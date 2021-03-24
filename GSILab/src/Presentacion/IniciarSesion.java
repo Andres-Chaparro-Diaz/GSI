@@ -25,6 +25,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.Dimension;
+import javax.swing.JInternalFrame;
 
 public class IniciarSesion {
 
