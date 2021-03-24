@@ -28,17 +28,21 @@ public class GestorUsuario {
 	}
 	
 	public static Usuario comprobarUsuario(String usuarioCompr, String contrasenaCompr) {
-		Usuario usuario;
+		Usuario usuario = new Usuario();
 		boolean datosCorrectos = false;
 		JSONObject fichero = leerUsuarios();
 		JSONObject usuarios = fichero.getJSONObject("usuarios");
 		for(int i=0; i<fichero.getInt("numUsuarios"); i++) {
 			if(usuarios.getJSONObject(String.valueOf(i)).getString("nombre").equals(usuarioCompr)) {
 				if(usuarios.getJSONObject(String.valueOf(i)).getString("contrasena").equals(contrasenaCompr)) {
-					datosCorrectos = true;
 					JSONObject aux = usuarios.getJSONObject(String.valueOf(i));
-					usuario = new Usuario(aux.getString("nombre"), aux.getString("correo"), aux.getString("telefono"),
-							aux.getString("tipo"), aux.getString("contrasena"), aux.getString("ultima_conexion"));
+					usuario.setContrasena(aux.getString("contrasena"));
+					usuario.setCorreo(aux.getString("correo"));
+					usuario.setNombre(aux.getString("nombre"));
+					usuario.setTelefono(aux.getString("telefono"));
+					usuario.setTipo(aux.getString("tipo"));
+					usuario.setUltConexion(aux.getString("ultima_conexion"));
+					datosCorrectos = true;
 				}
 				break;
 			}

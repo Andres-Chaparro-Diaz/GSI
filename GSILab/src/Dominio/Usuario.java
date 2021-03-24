@@ -12,6 +12,9 @@ public class Usuario {
 		this.contrasena=contrasena;
 		this.ultConexion = ultConexion;
 	}
+	public Usuario() {
+		
+	}
 	
 	public String getContrasena() {
 		return contrasena;
