@@ -24,8 +24,9 @@ import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.Dimension;
 
-public class Principal {
+public class IniciarSesion {
 
 	private JFrame frameApp;
 	private JLabel lblLogo;
@@ -45,7 +46,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					IniciarSesion window = new IniciarSesion();
 					window.frameApp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +58,7 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal() {
+	public IniciarSesion() {
 		initialize();
 	}
 
@@ -66,16 +67,19 @@ public class Principal {
 	 */
 	private void initialize() {
 		frameApp = new JFrame();
-		frameApp.setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Presentacion/Recursos/Logo.png")));
+		frameApp.setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png")));
 		frameApp.setTitle("Iniciar sesión");
-		frameApp.setBounds(100, 100, 900, 650);
+		//frameApp.setBounds(100, 100, 900, 650);
+		frameApp.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameApp.getContentPane().setLayout(null);
+		frameApp.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		frameApp.getContentPane().setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		{
 			lblLogo = new JLabel("");
-			lblLogo.setBounds(335, 73, 200, 200);
+			lblLogo.setBounds(701, 175, 200, 200);
 			try {
-				Image imagenOriginal = ImageIO.read(Principal.class.getResource("/Presentacion/Recursos/Logo.png"));
+				Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
 						lblLogo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
@@ -86,7 +90,7 @@ public class Principal {
 			
 			txtContrasena = new JPasswordField();
 			txtContrasena.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			txtContrasena.setBounds(386, 393, 257, 40);
+			txtContrasena.setBounds(752, 495, 257, 40);
 			frameApp.getContentPane().add(txtContrasena);
 			frameApp.getContentPane().add(lblLogo);
 		}
@@ -94,21 +98,21 @@ public class Principal {
 			lblUsuario = new JLabel("Usuario");
 			lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblUsuario.setBounds(204, 331, 142, 40);
+			lblUsuario.setBounds(570, 433, 142, 40);
 			frameApp.getContentPane().add(lblUsuario);
 		}
 		{
 			lblContrasea = new JLabel("Contraseña");
 			lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblContrasea.setBounds(204, 393, 142, 40);
+			lblContrasea.setBounds(570, 495, 142, 40);
 			frameApp.getContentPane().add(lblContrasea);
 		}
 		{
 			txtUsuario = new JTextField();
 			txtUsuario.setBorder(new LineBorder(Color.BLACK, 1, true));
 			txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			txtUsuario.setBounds(386, 331, 257, 40);
+			txtUsuario.setBounds(752, 433, 257, 40);
 			frameApp.getContentPane().add(txtUsuario);
 			txtUsuario.setColumns(10);
 		}
@@ -117,14 +121,15 @@ public class Principal {
 			btnIniciarSesion.setBorder(new LineBorder(Color.BLACK, 1, true));
 			btnIniciarSesion.addActionListener(new BtnIniciarSesionActionListener());
 			btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnIniciarSesion.setBounds(487, 443, 156, 40);
+			btnIniciarSesion.setBounds(853, 545, 156, 40);
 			frameApp.getContentPane().add(btnIniciarSesion);
 		}
 		{
 			lblFondo = new JLabel("");
-			lblFondo.setBounds(0, 0, 886, 613);
+			lblFondo.setLocation(0, 0);
+			lblFondo.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 			try {
-				Image imagenOriginal = ImageIO.read(Principal.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
+				Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),
 						lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
@@ -142,11 +147,19 @@ public class Principal {
 				if(usuario == null) {
 					JOptionPane.showMessageDialog(null, "Datos incorrectos.");
 				} else {
-					JOptionPane.showMessageDialog(null, "Ha iniciado sesion.\nBienvenido "+usuario.getNombre());
+					Tablon tablon = new Tablon(usuario);
+					frameApp.setVisible(false);
+					tablon.setVisible(true);
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe rellenar los campos anteriores.");
 			}
 		}
+	}
+	public void setVisible(boolean b) {
+		if (b==true)
+			frameApp.setVisible(true);
+		else
+			frameApp.setVisible(false);
 	}
 }
