@@ -26,6 +26,8 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IniciarSesion {
 
