@@ -144,7 +144,7 @@ public class Principal {
 				if(usuario == null) {
 					JOptionPane.showMessageDialog(null, "Datos incorrectos.");
 				} else {
-					
+					JOptionPane.showMessageDialog(null, "Ha iniciado sesion.\n Bienvenido\n"+usuario.getNombre());
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe rellenar los campos anteriores.");

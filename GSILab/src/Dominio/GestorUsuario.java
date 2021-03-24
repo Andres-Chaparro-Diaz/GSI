@@ -43,8 +43,8 @@ public class GestorUsuario {
 					usuario.setTipo(aux.getString("tipo"));
 					usuario.setUltConexion(aux.getString("ultima_conexion"));
 					datosCorrectos = true;
+					break;
 				}
-				break;
 			}
 		}
 		if(datosCorrectos == false)
