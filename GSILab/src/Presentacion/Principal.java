@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 
 public class Principal {
 
@@ -31,11 +32,11 @@ public class Principal {
 	private JLabel lblUsuario;
 	private JLabel lblContrasea;
 	private JTextField txtUsuario;
-	private JTextField txtContrasena;
 	private JButton btnIniciarSesion;
 	
 	private Usuario usuario;
 	private JLabel lblFondo;
+	private JPasswordField txtContrasena;
 
 	/**
 	 * Launch the application.
@@ -82,6 +83,11 @@ public class Principal {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			
+			txtContrasena = new JPasswordField();
+			txtContrasena.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			txtContrasena.setBounds(386, 393, 257, 40);
+			frameApp.getContentPane().add(txtContrasena);
 			frameApp.getContentPane().add(lblLogo);
 		}
 		{
@@ -105,14 +111,6 @@ public class Principal {
 			txtUsuario.setBounds(386, 331, 257, 40);
 			frameApp.getContentPane().add(txtUsuario);
 			txtUsuario.setColumns(10);
-		}
-		{
-			txtContrasena = new JTextField();
-			txtContrasena.setBorder(new LineBorder(Color.BLACK, 1, true));
-			txtContrasena.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			txtContrasena.setColumns(10);
-			txtContrasena.setBounds(386, 393, 257, 40);
-			frameApp.getContentPane().add(txtContrasena);
 		}
 		{
 			btnIniciarSesion = new JButton("Iniciar sesión");
@@ -139,12 +137,12 @@ public class Principal {
 	}
 	private class BtnIniciarSesionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (!txtUsuario.getText().isEmpty() && !txtContrasena.getText().isEmpty()) {
-				usuario = GestorUsuario.comprobarUsuario(txtUsuario.getText().toString(), txtContrasena.getText().toString());
+			if (!txtUsuario.getText().isEmpty() && txtContrasena.getPassword().length != 0) {
+				usuario = GestorUsuario.comprobarUsuario(txtUsuario.getText().toString(), String.valueOf(txtContrasena.getPassword()));
 				if(usuario == null) {
 					JOptionPane.showMessageDialog(null, "Datos incorrectos.");
 				} else {
-					JOptionPane.showMessageDialog(null, "Ha iniciado sesion.\n Bienvenido\n"+usuario.getNombre());
+					JOptionPane.showMessageDialog(null, "Ha iniciado sesion.\nBienvenido "+usuario.getNombre());
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe rellenar los campos anteriores.");
