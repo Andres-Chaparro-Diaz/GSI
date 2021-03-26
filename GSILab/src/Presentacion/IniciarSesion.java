@@ -82,7 +82,7 @@ public class IniciarSesion {
 		{
 			lblLogo = new JLabel("");
 			lblLogo.setBounds(667, 213, 200, 200);
-			lblLogo.setLocation((int) (screensize.width/2.5),(int) (screensize.height/5.2));
+			lblLogo.setLocation((int) (screensize.width/2.3),(int) (screensize.height/4.1));
 			try {
 				Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
@@ -96,7 +96,7 @@ public class IniciarSesion {
 			txtContrasena = new JPasswordField();
 			txtContrasena.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 			txtContrasena.setBounds(752, 495, 257, 40);
-			txtContrasena.setLocation((int) (screensize.width/2.5),(int) (screensize.height/2.2));
+			txtContrasena.setLocation((int) (screensize.width/2.3),(int) (screensize.height/1.95));
 			frameApp.getContentPane().add(txtContrasena);
 			frameApp.getContentPane().add(lblLogo);
 		}
@@ -104,8 +104,8 @@ public class IniciarSesion {
 			lblUsuario = new JLabel("Usuario");
 			lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblUsuario.setBounds(570, 424, 142, 40);
-			lblUsuario.setLocation((int) (screensize.width/3.6),(int) (screensize.height/2.5));
+			lblUsuario.setBounds(822, 489, 142, 40);
+			lblUsuario.setLocation((int) (screensize.width/3),(int) (screensize.height/2.2));
 
 			frameApp.getContentPane().add(lblUsuario);
 		}
@@ -113,8 +113,8 @@ public class IniciarSesion {
 			lblContrasea = new JLabel("Contraseña");
 			lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblContrasea.setBounds(570, 495, 142, 40);
-			lblContrasea.setLocation((int) (screensize.width/3.6),(int) (screensize.height/2.2));
+			lblContrasea.setBounds(823, 540, 142, 40);
+			lblContrasea.setLocation((int) (screensize.width/3),(int) (screensize.height/1.95));
 
 			frameApp.getContentPane().add(lblContrasea);
 		}
@@ -123,7 +123,7 @@ public class IniciarSesion {
 			txtUsuario.setBorder(new LineBorder(Color.BLACK, 1, true));
 			txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtUsuario.setBounds(752, 427, 257, 40);
-			txtUsuario.setLocation((int) (screensize.width/2.5),(int) (screensize.height/2.5));
+			txtUsuario.setLocation((int) (screensize.width/2.3),(int) (screensize.height/2.2));
 			frameApp.getContentPane().add(txtUsuario);
 			txtUsuario.setColumns(10);
 		}
@@ -132,8 +132,8 @@ public class IniciarSesion {
 			btnIniciarSesion.setBorder(new LineBorder(Color.BLACK, 1, true));
 			btnIniciarSesion.addActionListener(new BtnIniciarSesionActionListener());
 			btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnIniciarSesion.setBounds(869, 541, 156, 40);
-			btnIniciarSesion.setLocation((int) (screensize.width/2.3),(int) (screensize.height/2));
+			btnIniciarSesion.setBounds(1060, 544, 156, 40);
+			btnIniciarSesion.setLocation((int) (screensize.width/2.05),(int) (screensize.height/1.8));
 
 			frameApp.getContentPane().add(btnIniciarSesion);
 		}
