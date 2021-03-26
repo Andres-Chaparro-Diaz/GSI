@@ -124,7 +124,6 @@ public class IniciarSesion {
 			txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtUsuario.setBounds(752, 427, 257, 40);
 			txtUsuario.setLocation((int) (screensize.width/2.5),(int) (screensize.height/2.5));
-
 			frameApp.getContentPane().add(txtUsuario);
 			txtUsuario.setColumns(10);
 		}
@@ -133,7 +132,7 @@ public class IniciarSesion {
 			btnIniciarSesion.setBorder(new LineBorder(Color.BLACK, 1, true));
 			btnIniciarSesion.addActionListener(new BtnIniciarSesionActionListener());
 			btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnIniciarSesion.setBounds(853, 545, 156, 40);
+			btnIniciarSesion.setBounds(869, 541, 156, 40);
 			btnIniciarSesion.setLocation((int) (screensize.width/2.3),(int) (screensize.height/2));
 
 			frameApp.getContentPane().add(btnIniciarSesion);

@@ -33,6 +33,8 @@ import javax.swing.JMenuItem;
 import java.awt.Rectangle;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Tablon {
 
@@ -42,11 +44,17 @@ public class Tablon {
 	private JLabel lblLogoBusqueda;
 	private JTextField textField;
 	private JLabel lblFondoTablon;
-	private JButton btnNuevaPubli;
-	private JButton btnRecomendados;
-	private JButton btnNotificaciones;
 	private JPanel panel;
 	private JScrollPane scrollPane;
+	private JLabel lblFondo;
+	private JLabel ImNuevaPublicacion;
+	private JLabel lblNuevaPublicacion;
+	private JLabel ImExplorar;
+	private JLabel lblExplorar;
+	private JLabel ImTusPublicaciones;
+	private JLabel lblTusPublicaciones;
+	private JLabel lblNotificaciones;
+	private JLabel ImgNotificaciones;
 
 	/**
 	 * Create the application.
@@ -98,36 +106,16 @@ public class Tablon {
 		
 		lblLogoBusqueda = new JLabel("");
 		lblLogoBusqueda.setBounds(0, 0, 78, 61);
-		panelBusqueda.add(lblLogoBusqueda);
 		try {
-			Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/LogoBusqueda.png"));
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/LogoBusqueda.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogoBusqueda.getWidth(),
 					lblLogoBusqueda.getHeight(), java.awt.Image.SCALE_SMOOTH);
 			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 			lblLogoBusqueda.setIcon(iconoLabel);
-
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		lblLogoBusqueda.setBackground(Color.WHITE);
-		
-		JPanel pBotones = new JPanel();
-		pBotones.setBounds(10, 293, 407, 589);
-		frameApp.getContentPane().add(pBotones);
-		
-		JButton btnMisPublicaciones = new JButton("Tus Publicaciones");
-		pBotones.setLayout(new GridLayout(4, 1, 0, 0));
-		
-		btnNuevaPubli = new JButton("Nueva Publicacion");
-		pBotones.add(btnNuevaPubli);
-		
-		btnRecomendados = new JButton("Recomendados/Explorar");
-		pBotones.add(btnRecomendados);
-		pBotones.add(btnMisPublicaciones);
-		
-		btnNotificaciones = new JButton("Notificaciones");
-		pBotones.add(btnNotificaciones);
+		panelBusqueda.add(lblLogoBusqueda);
 		
 		panel = new JPanel();
 		panel.setBounds(548, 247, 608, 772);
@@ -155,6 +143,95 @@ public class Tablon {
 		JLabel lblUltimaConex = new JLabel("New label");
 		lblUltimaConex.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mnUsuario.add(lblUltimaConex);
+		
+		ImNuevaPublicacion = new JLabel("");
+		ImNuevaPublicacion.setBounds(148, 256, 80, 80);
+		try {
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/NuevaPublicacion.png"));
+			Image imagenEscalada = imagenOriginal.getScaledInstance(ImNuevaPublicacion.getWidth(),
+					ImNuevaPublicacion.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+			ImNuevaPublicacion.setIcon(iconoLabel);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		frameApp.getContentPane().add(ImNuevaPublicacion);
+		
+		lblNuevaPublicacion = new JLabel("Nueva publicación");
+		lblNuevaPublicacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNuevaPublicacion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNuevaPublicacion.setBounds(238, 247, 225, 100);
+		frameApp.getContentPane().add(lblNuevaPublicacion);
+		
+		ImExplorar = new JLabel("");
+		ImExplorar.setBounds(148, 356, 80, 80);
+		try {
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/Explorar.png"));
+			Image imagenEscalada = imagenOriginal.getScaledInstance(ImExplorar.getWidth(),
+					ImExplorar.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+			ImExplorar.setIcon(iconoLabel);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		frameApp.getContentPane().add(ImExplorar);
+		
+		lblExplorar = new JLabel("Explorar");
+		lblExplorar.setHorizontalAlignment(SwingConstants.LEFT);
+		lblExplorar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblExplorar.setBounds(238, 347, 225, 100);
+		frameApp.getContentPane().add(lblExplorar);
+		
+		ImTusPublicaciones = new JLabel("");
+		ImTusPublicaciones.setBounds(148, 458, 80, 80);
+		try {
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/TusPublicaciones.png"));
+			Image imagenEscalada = imagenOriginal.getScaledInstance(ImTusPublicaciones.getWidth(),
+					ImTusPublicaciones.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+			ImTusPublicaciones.setIcon(iconoLabel);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		frameApp.getContentPane().add(ImTusPublicaciones);
+		
+		lblTusPublicaciones = new JLabel("Tus publicaciones");
+		lblTusPublicaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblTusPublicaciones.setBounds(238, 447, 225, 100);
+		frameApp.getContentPane().add(lblTusPublicaciones);
+		
+		lblNotificaciones = new JLabel("Notificaciones");
+		lblNotificaciones.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNotificaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNotificaciones.setBounds(238, 547, 225, 100);
+		frameApp.getContentPane().add(lblNotificaciones);
+		
+		ImgNotificaciones = new JLabel("");
+		ImgNotificaciones.setBounds(148, 556, 80, 80);
+		try {
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/Notificaciones.png"));
+			Image imagenEscalada = imagenOriginal.getScaledInstance(ImgNotificaciones.getWidth(),
+					ImgNotificaciones.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+			ImgNotificaciones.setIcon(iconoLabel);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		frameApp.getContentPane().add(ImgNotificaciones);
+		
+		lblFondo = new JLabel("");
+		lblFondo.setLocation(0, 0);
+		lblFondo.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		try {
+			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
+			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),
+					lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+			lblFondo.setIcon(iconoLabel);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		frameApp.getContentPane().add(lblFondo);
 
 	}
 
