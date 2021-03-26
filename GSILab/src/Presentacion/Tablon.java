@@ -145,7 +145,8 @@ public class Tablon {
 		mnUsuario.add(lblUltimaConex);
 		
 		ImNuevaPublicacion = new JLabel("");
-		ImNuevaPublicacion.setBounds(148, 256, 80, 80);
+		ImNuevaPublicacion.addMouseListener(new ImNuevaPublicacionMouseListener());
+		ImNuevaPublicacion.setBounds(172, 256, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/NuevaPublicacion.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImNuevaPublicacion.getWidth(),
@@ -158,13 +159,14 @@ public class Tablon {
 		frameApp.getContentPane().add(ImNuevaPublicacion);
 		
 		lblNuevaPublicacion = new JLabel("Nueva publicación");
+		lblNuevaPublicacion.addMouseListener(new LblNuevaPublicacionMouseListener());
 		lblNuevaPublicacion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNuevaPublicacion.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNuevaPublicacion.setBounds(238, 247, 225, 100);
+		lblNuevaPublicacion.setBounds(262, 247, 225, 100);
 		frameApp.getContentPane().add(lblNuevaPublicacion);
 		
 		ImExplorar = new JLabel("");
-		ImExplorar.setBounds(148, 356, 80, 80);
+		ImExplorar.setBounds(172, 356, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/Explorar.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImExplorar.getWidth(),
@@ -179,11 +181,11 @@ public class Tablon {
 		lblExplorar = new JLabel("Explorar");
 		lblExplorar.setHorizontalAlignment(SwingConstants.LEFT);
 		lblExplorar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblExplorar.setBounds(238, 347, 225, 100);
+		lblExplorar.setBounds(262, 347, 225, 100);
 		frameApp.getContentPane().add(lblExplorar);
 		
 		ImTusPublicaciones = new JLabel("");
-		ImTusPublicaciones.setBounds(148, 458, 80, 80);
+		ImTusPublicaciones.setBounds(172, 458, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/TusPublicaciones.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImTusPublicaciones.getWidth(),
@@ -197,17 +199,17 @@ public class Tablon {
 		
 		lblTusPublicaciones = new JLabel("Tus publicaciones");
 		lblTusPublicaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTusPublicaciones.setBounds(238, 447, 225, 100);
+		lblTusPublicaciones.setBounds(262, 447, 225, 100);
 		frameApp.getContentPane().add(lblTusPublicaciones);
 		
 		lblNotificaciones = new JLabel("Notificaciones");
 		lblNotificaciones.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotificaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNotificaciones.setBounds(238, 547, 225, 100);
+		lblNotificaciones.setBounds(262, 547, 225, 100);
 		frameApp.getContentPane().add(lblNotificaciones);
 		
 		ImgNotificaciones = new JLabel("");
-		ImgNotificaciones.setBounds(148, 556, 80, 80);
+		ImgNotificaciones.setBounds(172, 556, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Tablon.class.getResource("/Presentacion/Recursos/Notificaciones.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImgNotificaciones.getWidth(),
@@ -240,5 +242,15 @@ public class Tablon {
 			frameApp.setVisible(true);
 		else
 			frameApp.setVisible(false);
+	}
+	private class LblNuevaPublicacionMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		}
+	}
+	private class ImNuevaPublicacionMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		}
 	}
 }
