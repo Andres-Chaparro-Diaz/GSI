@@ -40,8 +40,6 @@ public class GestorUsuario {
 					usuario.setCorreo(aux.getString("correo"));
 					usuario.setNombre(aux.getString("nombre"));
 					usuario.setTelefono(aux.getString("telefono"));
-					usuario.setTipo(aux.getString("tipo"));
-					usuario.setUltConexion(aux.getString("ultima_conexion"));
 					datosCorrectos = true;
 					break;
 				}
