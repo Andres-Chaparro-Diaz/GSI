@@ -3,10 +3,12 @@ package Presentacion;
 
 import javax.swing.JFrame;
 
+import Dominio.GestorMenu;
 import Dominio.Usuario;
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
@@ -35,6 +37,9 @@ import javax.swing.JOptionPane;
 import java.awt.Rectangle;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import org.json.JSONObject;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
@@ -58,7 +63,9 @@ public class Menu {
 	private JLabel lblNotificaciones;
 	private JLabel ImgNotificaciones;
 	NuevaPublicacion nuevaPublicacion = new NuevaPublicacion();
-	Tablon tablon = new Tablon();
+	Tablon tablon;
+	JSONObject JSONPublicaciones;
+	Publicacion[] publicaciones;
 	/**
 	 * Create the application.
 	 */
@@ -71,6 +78,9 @@ public class Menu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		JSONPublicaciones = GestorMenu.leerPublicaciones();
+		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
+		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		frameApp = new JFrame();
 		frameApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		//frameApp.setBounds(100, 100, 450, 300);
@@ -247,6 +257,8 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
+			tablon.setVisible(true);
+			nuevaPublicacion.setVisible(false);
 
 		}
 	}
@@ -255,7 +267,8 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
-
+			tablon.setVisible(true);
+			nuevaPublicacion.setVisible(false);
 		}
 	}
 
@@ -263,7 +276,8 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
-
+			tablon.setVisible(true);
+			nuevaPublicacion.setVisible(false);
 		}
 	}
 	private class LblFondoTablonMouseListener extends MouseAdapter {
@@ -271,6 +285,11 @@ public class Menu {
 		public void mouseClicked(MouseEvent e) {
 			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
+			publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
+			for(int i = 0;i<publicaciones.length;i++) {
+				tablon.add(publicaciones[i]);
+			}
+
 		}
 	}
 }

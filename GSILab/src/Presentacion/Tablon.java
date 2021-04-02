@@ -3,21 +3,17 @@ package Presentacion;
 import javax.swing.JPanel;
 import java.awt.Rectangle;
 import javax.swing.JScrollPane;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 public class Tablon extends JPanel {
-	private JScrollPane scrollPane;
 
 	/**
 	 * Create the panel.
 	 */
-	public Tablon() {
+	public Tablon(int numPublicaciones) {
 		setBounds(0, 0, 608, 783);
-		setLayout(null);
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 608, 783);
-
-		add(scrollPane);
+		setLayout(new GridLayout(numPublicaciones,1));
 
 	}
 }

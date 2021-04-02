@@ -63,4 +63,10 @@ public class Publicacion extends JPanel {
 		lblNewLabel.setBounds(139, 18, 46, 14);
 		add(lblNewLabel);
 	}
+	
+	public void crearPublicacion(String tag, String texto, String usuario) {
+		lblTag.setText(tag);
+		textArea.setText(texto);
+		lblUsuario.setText(usuario);
+	}
 }
