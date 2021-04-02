@@ -160,7 +160,7 @@ public class IniciarSesion {
 				if(usuario == null) {
 					JOptionPane.showMessageDialog(null, "Datos incorrectos.");
 				} else {
-					Tablon tablon = new Tablon(usuario);
+					Menu tablon = new Menu(usuario);
 					frameApp.setVisible(false);
 					tablon.setVisible(true);
 				}
