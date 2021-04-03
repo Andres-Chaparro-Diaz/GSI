@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
 
 public class Publicacion extends JPanel {
 	private JLabel lblTag;
@@ -28,10 +29,11 @@ public class Publicacion extends JPanel {
 		setLayout(null);
 		
 		lblUsuario = new JLabel("Nombre Usuario");
-		lblUsuario.setBounds(10, 11, 253, 29);
+		lblUsuario.setBounds(10, 11, 261, 29);
 		add(lblUsuario);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setBounds(10, 51, 588, 172);
 		add(textArea);
@@ -42,7 +44,7 @@ public class Publicacion extends JPanel {
 		add(lblMeGusta);
 		
 		lblTag = new JLabel("Etiqueta");
-		lblTag.setBounds(340, 26, 191, 14);
+		lblTag.setBounds(357, 234, 206, 29);
 		add(lblTag);
 		
 		lblimLike = new JLabel("New label");
@@ -60,8 +62,12 @@ public class Publicacion extends JPanel {
 		add(lblimLike);
 		
 		lblNewLabel = new JLabel("Follow");
-		lblNewLabel.setBounds(139, 18, 46, 14);
+		lblNewLabel.setBounds(357, 15, 73, 21);
 		add(lblNewLabel);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 290, 608, 2);
+		add(separator);
 	}
 	
 	public void crearPublicacion(String tag, String texto, String usuario) {

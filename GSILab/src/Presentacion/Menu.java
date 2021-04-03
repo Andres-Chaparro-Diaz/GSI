@@ -66,6 +66,7 @@ public class Menu {
 	Tablon tablon;
 	JSONObject JSONPublicaciones;
 	Publicacion[] publicaciones;
+	private JScrollPane scrollPane;
 	/**
 	 * Create the application.
 	 */
@@ -232,9 +233,15 @@ public class Menu {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		scrollPane = new JScrollPane();
+		scrollPane.setVisible(false);
+		scrollPane.setBounds(0, 0, 608, 783);
 		frameApp.getContentPane().add(lblFondo);
-		panelCard.add(tablon);
+		panelCard.add(scrollPane);
 		panelCard.add(nuevaPublicacion);
+		
+
+		scrollPane.add(tablon);
 		nuevaPublicacion.setVisible(false);
 	}
 
@@ -247,8 +254,8 @@ public class Menu {
 	private class LblNuevaPublicacionMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			JOptionPane.showMessageDialog(null, "Completar");
 			tablon.setVisible(false);
+			scrollPane.setVisible(false);
 			nuevaPublicacion.setVisible(true);
 		}
 	}
@@ -257,6 +264,7 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
+			scrollPane.setVisible(true);
 			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
 
@@ -267,6 +275,7 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
+			scrollPane.setVisible(true);
 			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
 		}
@@ -276,6 +285,7 @@ public class Menu {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JOptionPane.showMessageDialog(null, "Completar");
+			scrollPane.setVisible(true);
 			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
 		}
@@ -283,8 +293,10 @@ public class Menu {
 	private class LblFondoTablonMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			tablon.setVisible(true);
+			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
+			scrollPane.setVisible(true);
+			tablon.setVisible(true);
 			publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
 			for(int i = 0;i<publicaciones.length;i++) {
 				tablon.add(publicaciones[i]);
