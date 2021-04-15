@@ -65,6 +65,9 @@ public class Menu {
 	NuevaPublicacion nuevaPublicacion = new NuevaPublicacion();
 	JSONObject JSONPublicaciones;
 	Publicacion[] publicaciones;
+	private JPanel panelBotones;
+	private JButton[] botones;
+
 	/**
 	 * Create the application.
 	 */
@@ -81,6 +84,9 @@ public class Menu {
 		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
 		frameApp = new JFrame();
 		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
+		
+		botones = new JButton[(JSONPublicaciones.getInt("numPublicaciones")/3)];
+		
 		frameApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		//frameApp.setBounds(100, 100, 450, 300);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -218,23 +224,37 @@ public class Menu {
 			e1.printStackTrace();
 		}
 		frameApp.getContentPane().add(ImgNotificaciones);
+
+		panelCard.add(tablon);
+		panelCard.add(nuevaPublicacion);
 		
+		panelBotones = new JPanel();
+		panelBotones.setBounds(677, 964, 610, 47);
+		creaBotones();
+
+		
+		frameApp.getContentPane().add(panelBotones);
+		panelBotones.setLayout(new GridLayout(1,JSONPublicaciones.getInt("numPublicaciones")/3));
 		lblFondo = new JLabel("");
 		lblFondo.setLocation(0, 0);
 		lblFondo.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
-			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),
-					lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 			lblFondo.setIcon(iconoLabel);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		frameApp.getContentPane().add(lblFondo);
-		panelCard.add(nuevaPublicacion);
-		panelCard.add(tablon);
 		nuevaPublicacion.setVisible(false);
+	}
+	public void creaBotones() {
+		for(int i = 0; i<botones.length;i++) {
+			botones[i]  = new JButton();
+			botones[i].setText(String.valueOf(i+1));
+			panelBotones.add(botones[i]);
+		}
 	}
 
 	public void setVisible(boolean b) {
@@ -246,6 +266,7 @@ public class Menu {
 	private class LblNuevaPublicacionMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			tablon.setVisible(false);
 			nuevaPublicacion.setVisible(true);
 		}
 	}
@@ -275,6 +296,7 @@ public class Menu {
 		public void mouseClicked(MouseEvent e) {
 			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
+			tablon.setVisible(true);
 
 			
 			publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
