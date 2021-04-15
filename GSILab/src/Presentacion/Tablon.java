@@ -13,8 +13,9 @@ public class Tablon extends JPanel {
 	 * Create the panel.
 	 */
 	public Tablon(int numPublicaciones) {
-		setBounds(0, 0, 608,numPublicaciones*300); //numPublicaciones*300
-		setLayout(new GridLayout(numPublicaciones,1));
+		setAutoscrolls(true);
+		setBounds(0, 0, 608,200*3); // 783 numPublicaciones*300
+		setLayout(new GridLayout(1,numPublicaciones/3));
 
 	}
 }

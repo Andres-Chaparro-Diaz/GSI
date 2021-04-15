@@ -25,7 +25,7 @@ public class Publicacion extends JPanel {
 	 * Create the panel.
 	 */
 	public Publicacion() {
-		setBounds(0,0,608,300);
+		setBounds(0,0,608,200);
 		setLayout(null);
 		
 		lblUsuario = new JLabel("Nombre Usuario");
@@ -35,21 +35,22 @@ public class Publicacion extends JPanel {
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-		textArea.setBounds(10, 51, 588, 172);
+		textArea.setBounds(0, 51, 588, 90);
 		add(textArea);
 		
 		lblMeGusta = new JLabel("Me Gusta");
 		lblMeGusta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMeGusta.setBounds(10, 234, 128, 29);
+		lblMeGusta.setBounds(10, 152, 128, 29);
+		
 		add(lblMeGusta);
 		
 		lblTag = new JLabel("Etiqueta");
-		lblTag.setBounds(357, 234, 206, 29);
+		lblTag.setBounds(357, 152, 206, 29);
 		add(lblTag);
 		
 		lblimLike = new JLabel("New label");
 		lblimLike.setIcon(new ImageIcon(Publicacion.class.getResource("/Presentacion/Recursos/MeGusta.png")));
-		lblimLike.setBounds(10, 234, 25, 25);
+		lblimLike.setBounds(10, 152, 25, 25);
 		try {
 			Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/MeGusta.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(lblimLike.getWidth(),
@@ -59,6 +60,7 @@ public class Publicacion extends JPanel {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+
 		add(lblimLike);
 		
 		lblNewLabel = new JLabel("Follow");
@@ -66,7 +68,7 @@ public class Publicacion extends JPanel {
 		add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 290, 608, 2);
+		separator.setBounds(0, 192, 608, 2);
 		add(separator);
 	}
 	

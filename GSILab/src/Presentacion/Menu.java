@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -62,11 +61,10 @@ public class Menu {
 	private JLabel lblTusPublicaciones;
 	private JLabel lblNotificaciones;
 	private JLabel ImgNotificaciones;
+	private Tablon tablon;
 	NuevaPublicacion nuevaPublicacion = new NuevaPublicacion();
-	Tablon tablon;
 	JSONObject JSONPublicaciones;
 	Publicacion[] publicaciones;
-	private JScrollPane scrollPane;
 	/**
 	 * Create the application.
 	 */
@@ -81,8 +79,8 @@ public class Menu {
 	private void initialize() {
 		JSONPublicaciones = GestorMenu.leerPublicaciones();
 		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
-		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		frameApp = new JFrame();
+		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		frameApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		//frameApp.setBounds(100, 100, 450, 300);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +107,7 @@ public class Menu {
 		frameApp.getContentPane().add(lblFondoTablon);
 		
 		panelBusqueda = new JPanel();
-		panelBusqueda.setBounds(779, 65, 406, 61);
+		panelBusqueda.setBounds(1369, 60, 406, 61);
 		frameApp.getContentPane().add(panelBusqueda);
 		panelBusqueda.setLayout(null);
 
@@ -134,7 +132,7 @@ public class Menu {
 		panelCard = new JPanel();
 		panelCard.setOpaque(false);
 		panelCard.setBorder(null);
-		panelCard.setBounds(679, 247, 608, 783);
+		panelCard.setBounds(679, 133, 608, 820);
 		frameApp.getContentPane().add(panelCard);
 		panelCard.setLayout(new CardLayout(0, 0));
 		
@@ -233,15 +231,9 @@ public class Menu {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		scrollPane = new JScrollPane();
-		scrollPane.setVisible(false);
-		scrollPane.setBounds(0, 0, 608, 783);
 		frameApp.getContentPane().add(lblFondo);
-		panelCard.add(scrollPane);
 		panelCard.add(nuevaPublicacion);
-		
-
-		scrollPane.add(tablon);
+		panelCard.add(tablon);
 		nuevaPublicacion.setVisible(false);
 	}
 
@@ -254,8 +246,6 @@ public class Menu {
 	private class LblNuevaPublicacionMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			tablon.setVisible(false);
-			scrollPane.setVisible(false);
 			nuevaPublicacion.setVisible(true);
 		}
 	}
@@ -263,20 +253,13 @@ public class Menu {
 	private class LblExplorarMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			JOptionPane.showMessageDialog(null, "Completar");
-			scrollPane.setVisible(true);
-			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
-
 		}
 	}
 
 	private class LblTusPublicacionesMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			JOptionPane.showMessageDialog(null, "Completar");
-			scrollPane.setVisible(true);
-			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
 		}
 	}
@@ -284,9 +267,6 @@ public class Menu {
 	private class LblNotificacionesMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			JOptionPane.showMessageDialog(null, "Completar");
-			scrollPane.setVisible(true);
-			tablon.setVisible(true);
 			nuevaPublicacion.setVisible(false);
 		}
 	}
@@ -295,12 +275,16 @@ public class Menu {
 		public void mouseClicked(MouseEvent e) {
 			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
-			scrollPane.setVisible(true);
-			tablon.setVisible(true);
+
+			
 			publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
 			for(int i = 0;i<publicaciones.length;i++) {
 				tablon.add(publicaciones[i]);
+				Dimension d = tablon.getSize();
+				tablon.setSize(d.width,d.height+300);
+				
 			}
+
 
 		}
 	}
