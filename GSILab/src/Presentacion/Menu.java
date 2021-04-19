@@ -85,6 +85,7 @@ public class Menu {
 	private void initialize() {
 		JSONPublicaciones = GestorMenu.leerPublicaciones();
 		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
+		publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
 		frameApp = new JFrame();
 		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		
@@ -236,7 +237,7 @@ public class Menu {
 		panelBotones = new JPanel();
 		panelBotones.setBounds(677, 964, 610, 47);
 		creaBotones();
-
+	
 		
 		frameApp.getContentPane().add(panelBotones);
 		panelBotones.setLayout(new GridLayout(1,JSONPublicaciones.getInt("numPublicaciones")/3));
@@ -258,9 +259,12 @@ public class Menu {
 		for(int i = 0; i<botones.length;i++) {
 			botones[i]  = new JButton();
 			botones[i].setText(String.valueOf(i+1));
+			botones[i].setActionCommand(String.valueOf(i));
+			botones[i].addActionListener(new BtnBotonesActionListener());
 			panelBotones.add(botones[i]);
 		}
 	}
+	
 
 	public void setVisible(boolean b) {
 		if (b==true)
@@ -301,14 +305,13 @@ public class Menu {
 		public void mouseClicked(MouseEvent e) {
 			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
+			tablon.setVisible(false);
 			tablon.setVisible(true);
 
 			
-			publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
-			for(int i = 0;i<publicaciones.length;i++) {
+			for(int i = 0;i<publicaciones.length && i<3;i++) {
 				tablon.add(publicaciones[i]);
-				Dimension d = tablon.getSize();
-				tablon.setSize(d.width,d.height+300);
+
 				
 			}
 
@@ -318,7 +321,17 @@ public class Menu {
 	
 	private class BtnBotonesActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			tablon.removeAll();
+			nuevaPublicacion.setVisible(false);
+			tablon.setVisible(false);
+			tablon.setVisible(true);
 			
+			int n = Integer.parseInt(e.getActionCommand()), i,contador=0;
+			if(n==0) i = 0; else i = n*3;
+			for(int j = i;j<publicaciones.length && contador<3;j++) {
+				tablon.add(publicaciones[j]);
+				contador++;
+			}
 		}
 	}
 }
