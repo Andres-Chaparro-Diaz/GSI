@@ -4,6 +4,7 @@ package Presentacion;
 import javax.swing.JFrame;
 
 import Dominio.GestorMenu;
+import Dominio.GestorUsuario;
 import Dominio.Usuario;
 import java.awt.Frame;
 import java.awt.Toolkit;
@@ -39,6 +40,8 @@ import javax.swing.SwingConstants;
 
 import org.json.JSONObject;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
@@ -67,7 +70,7 @@ public class Menu {
 	Publicacion[] publicaciones;
 	private JPanel panelBotones;
 	private JButton[] botones;
-
+	private int nbotones;
 	/**
 	 * Create the application.
 	 */
@@ -85,7 +88,9 @@ public class Menu {
 		frameApp = new JFrame();
 		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		
-		botones = new JButton[(JSONPublicaciones.getInt("numPublicaciones")/3)];
+		if((JSONPublicaciones.getInt("numPublicaciones")%3)== 0) nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3);
+		else nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3)+1;
+		botones = new JButton[nbotones];
 		
 		frameApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		//frameApp.setBounds(100, 100, 450, 300);
@@ -308,6 +313,12 @@ public class Menu {
 			}
 
 
+		}
+	}
+	
+	private class BtnBotonesActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
 		}
 	}
 }
