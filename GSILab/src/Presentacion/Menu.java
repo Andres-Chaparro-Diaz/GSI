@@ -88,6 +88,7 @@ public class Menu {
 		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
 		publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones,usuario);
 		frameApp = new JFrame();
+		frameApp.setResizable(false);
 		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
 		nuevaPublicacion = new NuevaPublicacion(usuario);
 		if((JSONPublicaciones.getInt("numPublicaciones")%3)== 0) nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3);
@@ -239,8 +240,8 @@ public class Menu {
 		frameApp.getContentPane().add(panelBotones);
 		panelBotones.setLayout(new GridLayout(1,JSONPublicaciones.getInt("numPublicaciones")/3));
 		lblFondo = new JLabel("");
-		lblFondo.setSize(1477, 681);
 		lblFondo.setLocation(0, 0);
+		lblFondo.setBounds(0,0,1280,720);
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);

@@ -70,6 +70,7 @@ public class IniciarSesion {
 	 */
 	private void initialize() {
 		frameApp = new JFrame();
+		frameApp.setResizable(false);
 		frameApp.setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png")));
 		frameApp.setTitle("Iniciar sesión");
 		frameApp.setBounds(100, 100, 1280, 720);
@@ -129,8 +130,7 @@ public class IniciarSesion {
 		}
 		{
 			lblFondo = new JLabel("");
-			lblFondo.setLocation(0, 0);
-			lblFondo.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+			lblFondo.setBounds(0,0,1280,720);
 			try {
 				Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),
