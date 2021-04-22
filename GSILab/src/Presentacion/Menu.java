@@ -78,6 +78,19 @@ public class Menu {
 	public Menu(Usuario u) {
 		usuario = u;
 		initialize();
+		
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 * HAY COMENTARIO IMPORTANTE EN EL ACTION LISTENER DEL LBLMEGUSTA DE LA CLASE PUBLICACION
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 	}
 
 	/**

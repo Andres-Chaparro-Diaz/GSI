@@ -95,6 +95,8 @@ public class Publicacion extends JPanel {
 	private class LblMeGustaMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			// AQUI HAY QUE ACTUALIZAR EL TABLON PARA QUE SE VEA LOS CAMBIOS EN EL LBLMEGUSTA Y TAMBIEN PARA QUE PIERDA EL TABLON LA CONCENTRACION
+			// EN UNA UNICA PUBLICACION, ESTO SE ME OCURRE HACERLO ARRASTRANDO EL TABLON Y RETURNEANDOLO Y REFRESCANDOLO
 			GestorPublicacion.meGusta(lblTag.getText(), JSONUsuarios, u);
 			lblTag.setBackground(Color.CYAN);
 			//GestorPublicaciones.notificar(lblUsuario.getText(),JSONUsuarios);
