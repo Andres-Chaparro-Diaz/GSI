@@ -2,6 +2,7 @@ package Presentacion;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.io.File;
@@ -12,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import org.json.JSONObject;
+
+import Dominio.GestorPublicacion;
+import Dominio.GestorUsuario;
 import Dominio.Usuario;
 
 import javax.imageio.ImageIO;
@@ -28,6 +33,7 @@ public class Publicacion extends JPanel {
 	private JLabel lblimLike;
 	private JLabel lblNewLabel;
 	private Usuario u;
+	JSONObject JSONUsuarios;
 	/**
 	 * Create the panel.
 	 */
@@ -35,6 +41,7 @@ public class Publicacion extends JPanel {
 		setBounds(0,0,608,165);
 		setLayout(null);
 		this.u=u;
+		JSONUsuarios = GestorUsuario.leerUsuarios();
 		lblUsuario = new JLabel("Nombre Usuario");
 		lblUsuario.setBounds(10, 11, 261, 29);
 		add(lblUsuario);
@@ -88,13 +95,9 @@ public class Publicacion extends JPanel {
 	private class LblMeGustaMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			/*JSONObject JSONUsuarios;
-			lblTag.getText();
-			String rutaescritura = System.getProperty("user.dir") + "\\src\\dominio\\usuarios.json";
-			String file = "actividades.json";
-			FileWriter fw = new FileWriter(new File(rutaescritura, file));
-			fw.write(JSONUsuarios.toString());
-			fw.close();*/
+			GestorPublicacion.meGusta(lblTag.getText(), JSONUsuarios, u);
+			lblTag.setBackground(Color.CYAN);
+			//GestorPublicaciones.notificar(lblUsuario.getText(),JSONUsuarios);
 		}
 	}
 }
