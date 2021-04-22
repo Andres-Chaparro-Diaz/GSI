@@ -54,7 +54,7 @@ public class Menu {
 	private JPanel panelBusqueda;
 	private JLabel lblLogoBusqueda;
 	private JTextField textField;
-	private JLabel lblFondoTablon;
+	private JLabel lblLogo;
 	private JPanel panelCard;
 	private JLabel lblFondo;
 	private JLabel ImNuevaPublicacion;
@@ -94,33 +94,29 @@ public class Menu {
 		else nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3)+1;
 		botones = new JButton[nbotones];
 		
-		frameApp.setExtendedState(Frame.MAXIMIZED_BOTH);
-		//frameApp.setBounds(100, 100, 450, 300);
+		frameApp.setBounds(100, 100, 1493, 720);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameApp.getContentPane().setBounds(0, 0, frameApp.getWidth(), frameApp.getHeight());
-		Dimension screenSize =Toolkit.getDefaultToolkit().getScreenSize();
-		frameApp.setSize(screenSize);
-		frameApp.getContentPane().setSize(screenSize);
-		frameApp.getContentPane().setLayout(null);
+
 		
-		lblFondoTablon = new JLabel("");
-		lblFondoTablon.addMouseListener(new LblFondoTablonMouseListener());
-		lblFondoTablon.setBounds(126, 38, 413, 114);
+		lblLogo = new JLabel("");
+		lblLogo.addMouseListener(new LblFondoTablonMouseListener());
+		lblLogo.setBounds(129, 11, 394, 90);
 		try {
 			Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/LogoTablon.png"));
-			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondoTablon.getWidth(),
-					lblFondoTablon.getHeight(), java.awt.Image.SCALE_SMOOTH);
+			Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
+					lblLogo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 			ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
-			lblFondoTablon.setIcon(iconoLabel);
+			lblLogo.setIcon(iconoLabel);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		lblFondoTablon.setLocation((int) (screenSize.width/16),(int) (screenSize.height/27));
+		frameApp.getContentPane().setLayout(null);
 
-		frameApp.getContentPane().add(lblFondoTablon);
+		frameApp.getContentPane().add(lblLogo);
 		
 		panelBusqueda = new JPanel();
-		panelBusqueda.setBounds(1369, 60, 406, 61);
+		panelBusqueda.setBounds(1147, 11, 320, 61);
 		frameApp.getContentPane().add(panelBusqueda);
 		panelBusqueda.setLayout(null);
 
@@ -145,13 +141,13 @@ public class Menu {
 		panelCard = new JPanel();
 		panelCard.setOpaque(false);
 		panelCard.setBorder(null);
-		panelCard.setBounds(679, 133, 608, 820);
+		panelCard.setBounds(505, 112, 608, 495);
 		frameApp.getContentPane().add(panelCard);
 		panelCard.setLayout(new CardLayout(0, 0));
 		
 		ImNuevaPublicacion = new JLabel("");
 		ImNuevaPublicacion.addMouseListener(new LblNuevaPublicacionMouseListener());
-		ImNuevaPublicacion.setBounds(265, 257, 80, 80);
+		ImNuevaPublicacion.setBounds(126, 169, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/NuevaPublicacion.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImNuevaPublicacion.getWidth(),
@@ -167,12 +163,12 @@ public class Menu {
 		lblNuevaPublicacion.addMouseListener(new LblNuevaPublicacionMouseListener());
 		lblNuevaPublicacion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNuevaPublicacion.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNuevaPublicacion.setBounds(355, 247, 225, 100);
+		lblNuevaPublicacion.setBounds(216, 159, 225, 100);
 		frameApp.getContentPane().add(lblNuevaPublicacion);
 		
 		ImExplorar = new JLabel("");
 		ImExplorar.addMouseListener(new LblExplorarMouseListener());
-		ImExplorar.setBounds(265, 357, 80, 80);
+		ImExplorar.setBounds(126, 269, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/Explorar.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImExplorar.getWidth(),
@@ -188,12 +184,12 @@ public class Menu {
 		lblExplorar.addMouseListener(new LblExplorarMouseListener());
 		lblExplorar.setHorizontalAlignment(SwingConstants.LEFT);
 		lblExplorar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblExplorar.setBounds(355, 348, 225, 100);
+		lblExplorar.setBounds(216, 260, 225, 100);
 		frameApp.getContentPane().add(lblExplorar);
 		
 		ImTusPublicaciones = new JLabel("");
 		ImTusPublicaciones.addMouseListener(new LblTusPublicacionesMouseListener());
-		ImTusPublicaciones.setBounds(265, 459, 80, 80);
+		ImTusPublicaciones.setBounds(126, 371, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/TusPublicaciones.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImTusPublicaciones.getWidth(),
@@ -208,19 +204,19 @@ public class Menu {
 		lblTusPublicaciones = new JLabel("Tus publicaciones");
 		lblTusPublicaciones.addMouseListener(new LblTusPublicacionesMouseListener());
 		lblTusPublicaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTusPublicaciones.setBounds(355, 448, 225, 100);
+		lblTusPublicaciones.setBounds(216, 360, 225, 100);
 		frameApp.getContentPane().add(lblTusPublicaciones);
 		
 		lblNotificaciones = new JLabel("Notificaciones");
 		lblNotificaciones.addMouseListener(new LblNotificacionesMouseListener());
 		lblNotificaciones.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotificaciones.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNotificaciones.setBounds(355, 548, 225, 100);
+		lblNotificaciones.setBounds(216, 460, 225, 100);
 		frameApp.getContentPane().add(lblNotificaciones);
 		
 		ImgNotificaciones = new JLabel("");
 		ImgNotificaciones.addMouseListener(new LblNotificacionesMouseListener());
-		ImgNotificaciones.setBounds(265, 557, 80, 80);
+		ImgNotificaciones.setBounds(126, 469, 80, 80);
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/Notificaciones.png"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(ImgNotificaciones.getWidth(),
@@ -236,15 +232,15 @@ public class Menu {
 		panelCard.add(nuevaPublicacion);
 		
 		panelBotones = new JPanel();
-		panelBotones.setBounds(677, 964, 610, 47);
+		panelBotones.setBounds(505, 623, 610, 47);
 		creaBotones();
 	
 		
 		frameApp.getContentPane().add(panelBotones);
 		panelBotones.setLayout(new GridLayout(1,JSONPublicaciones.getInt("numPublicaciones")/3));
 		lblFondo = new JLabel("");
+		lblFondo.setSize(1477, 681);
 		lblFondo.setLocation(0, 0);
-		lblFondo.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		try {
 			Image imagenOriginal = ImageIO.read(Menu.class.getResource("/Presentacion/Recursos/Fondo.jpg"));
 			Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);

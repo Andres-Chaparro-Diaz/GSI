@@ -72,17 +72,12 @@ public class IniciarSesion {
 		frameApp = new JFrame();
 		frameApp.setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png")));
 		frameApp.setTitle("Iniciar sesión");
-		//frameApp.setBounds(100, 100, 900, 650);
-		frameApp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frameApp.setBounds(100, 100, 1280, 720);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameApp.getContentPane().setLayout(null);
-		Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-		frameApp.setSize(screensize);
-		frameApp.getContentPane().setSize(screensize);
 		{
 			lblLogo = new JLabel("");
-			lblLogo.setBounds(667, 213, 200, 200);
-			lblLogo.setLocation((int) (screensize.width/2.3),(int) (screensize.height/4.1));
+			lblLogo.setBounds(550, 107, 200, 200);
 			try {
 				Image imagenOriginal = ImageIO.read(IniciarSesion.class.getResource("/Presentacion/Recursos/Logo.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
@@ -95,8 +90,7 @@ public class IniciarSesion {
 			
 			txtContrasena = new JPasswordField();
 			txtContrasena.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			txtContrasena.setBounds(752, 495, 257, 40);
-			txtContrasena.setLocation((int) (screensize.width/2.3),(int) (screensize.height/1.95));
+			txtContrasena.setBounds(593, 402, 257, 40);
 			frameApp.getContentPane().add(txtContrasena);
 			frameApp.getContentPane().add(lblLogo);
 		}
@@ -104,8 +98,7 @@ public class IniciarSesion {
 			lblUsuario = new JLabel("Usuario");
 			lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblUsuario.setBounds(822, 489, 142, 40);
-			lblUsuario.setLocation((int) (screensize.width/3),(int) (screensize.height/2.2));
+			lblUsuario.setBounds(440, 351, 142, 40);
 
 			frameApp.getContentPane().add(lblUsuario);
 		}
@@ -113,8 +106,7 @@ public class IniciarSesion {
 			lblContrasea = new JLabel("Contraseña");
 			lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblContrasea.setBounds(823, 540, 142, 40);
-			lblContrasea.setLocation((int) (screensize.width/3),(int) (screensize.height/1.95));
+			lblContrasea.setBounds(441, 402, 142, 40);
 
 			frameApp.getContentPane().add(lblContrasea);
 		}
@@ -122,8 +114,7 @@ public class IniciarSesion {
 			txtUsuario = new JTextField();
 			txtUsuario.setBorder(new LineBorder(Color.BLACK, 1, true));
 			txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			txtUsuario.setBounds(752, 427, 257, 40);
-			txtUsuario.setLocation((int) (screensize.width/2.3),(int) (screensize.height/2.2));
+			txtUsuario.setBounds(593, 351, 257, 40);
 			frameApp.getContentPane().add(txtUsuario);
 			txtUsuario.setColumns(10);
 		}
@@ -132,8 +123,7 @@ public class IniciarSesion {
 			btnIniciarSesion.setBorder(new LineBorder(Color.BLACK, 1, true));
 			btnIniciarSesion.addActionListener(new BtnIniciarSesionActionListener());
 			btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnIniciarSesion.setBounds(1060, 544, 156, 40);
-			btnIniciarSesion.setLocation((int) (screensize.width/2.05),(int) (screensize.height/1.8));
+			btnIniciarSesion.setBounds(696, 453, 156, 40);
 
 			frameApp.getContentPane().add(btnIniciarSesion);
 		}
