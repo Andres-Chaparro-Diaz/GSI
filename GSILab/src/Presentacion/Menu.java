@@ -116,7 +116,7 @@ public class Menu {
 		frameApp.getContentPane().add(lblLogo);
 		
 		panelBusqueda = new JPanel();
-		panelBusqueda.setBounds(793, 11, 320, 61);
+		panelBusqueda.setBounds(793, 11, 320, 61); // esto tiene que cambiar
 		frameApp.getContentPane().add(panelBusqueda);
 		panelBusqueda.setLayout(null);
 
