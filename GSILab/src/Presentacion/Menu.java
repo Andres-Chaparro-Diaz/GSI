@@ -94,7 +94,7 @@ public class Menu {
 		else nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3)+1;
 		botones = new JButton[nbotones];
 		
-		frameApp.setBounds(100, 100, 1493, 720);
+		frameApp.setBounds(100, 100, 1280, 720);
 		frameApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameApp.getContentPane().setBounds(0, 0, frameApp.getWidth(), frameApp.getHeight());
 
@@ -116,7 +116,7 @@ public class Menu {
 		frameApp.getContentPane().add(lblLogo);
 		
 		panelBusqueda = new JPanel();
-		panelBusqueda.setBounds(1147, 11, 320, 61);
+		panelBusqueda.setBounds(793, 11, 320, 61);
 		frameApp.getContentPane().add(panelBusqueda);
 		panelBusqueda.setLayout(null);
 
