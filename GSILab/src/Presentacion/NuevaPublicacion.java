@@ -10,6 +10,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+
+import Dominio.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -20,14 +23,14 @@ public class NuevaPublicacion extends JPanel {
 	private JButton btnLimpiar;
 	private JButton btnPublicar;
 	private JTextField txtEtiqueta;
-
+	private Usuario usuario;
 	/**
 	 * Create the panel.
 	 */
-	public NuevaPublicacion() {
+	public NuevaPublicacion(Usuario u) {
 		setBounds(new Rectangle(0, 0, 608, 400));
 		setLayout(null);
-		
+		usuario = u;
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.addMouseListener(new TextAreaMouseListener());

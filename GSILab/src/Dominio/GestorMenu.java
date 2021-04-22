@@ -29,7 +29,7 @@ public class GestorMenu {
 		return obj;
 	}
 	
-	public static Publicacion[] creaPublicaciones(Publicacion[] publicaciones, JSONObject JSONPublicaciones) {
+	public static Publicacion[] creaPublicaciones(Publicacion[] publicaciones, JSONObject JSONPublicaciones,Usuario u) {
 		Iterator keys = JSONPublicaciones.getJSONObject("publicaciones").keys();
 		int j = 0;
 		while(keys.hasNext()) {
@@ -37,7 +37,7 @@ public class GestorMenu {
 			String usuario = JSONPublicaciones.getJSONObject("publicaciones").getJSONObject(i).getString("usuario");
 			String texto =JSONPublicaciones.getJSONObject("publicaciones").getJSONObject(i).getString("mensaje");
 			String tag = JSONPublicaciones.getJSONObject("publicaciones").getJSONObject(i).getString("etiqueta");
-			publicaciones[j] = new Publicacion();
+			publicaciones[j] = new Publicacion(u);
 			publicaciones[j].crearPublicacion(tag, texto, usuario);
 			j++;
 		}		

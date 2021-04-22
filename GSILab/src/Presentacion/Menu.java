@@ -3,6 +3,7 @@ package Presentacion;
 
 import javax.swing.JFrame;
 
+
 import Dominio.GestorMenu;
 import Dominio.GestorUsuario;
 import Dominio.Usuario;
@@ -65,7 +66,7 @@ public class Menu {
 	private JLabel lblNotificaciones;
 	private JLabel ImgNotificaciones;
 	private Tablon tablon;
-	NuevaPublicacion nuevaPublicacion = new NuevaPublicacion();
+	NuevaPublicacion nuevaPublicacion; 
 	JSONObject JSONPublicaciones;
 	Publicacion[] publicaciones;
 	private JPanel panelBotones;
@@ -85,10 +86,10 @@ public class Menu {
 	private void initialize() {
 		JSONPublicaciones = GestorMenu.leerPublicaciones();
 		publicaciones = new Publicacion[JSONPublicaciones.getInt("numPublicaciones")];
-		publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones);
+		publicaciones = GestorMenu.creaPublicaciones(publicaciones, JSONPublicaciones,usuario);
 		frameApp = new JFrame();
 		tablon = new Tablon(JSONPublicaciones.getInt("numPublicaciones"));
-		
+		nuevaPublicacion = new NuevaPublicacion(usuario);
 		if((JSONPublicaciones.getInt("numPublicaciones")%3)== 0) nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3);
 		else nbotones = (JSONPublicaciones.getInt("numPublicaciones")/3)+1;
 		botones = new JButton[nbotones];
@@ -306,16 +307,10 @@ public class Menu {
 			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
 			tablon.setVisible(false);
-			tablon.setVisible(true);
-
-			
 			for(int i = 0;i<publicaciones.length && i<3;i++) {
 				tablon.add(publicaciones[i]);
-
-				
 			}
-
-
+			tablon.setVisible(true);
 		}
 	}
 	
@@ -324,14 +319,15 @@ public class Menu {
 			tablon.removeAll();
 			nuevaPublicacion.setVisible(false);
 			tablon.setVisible(false);
-			tablon.setVisible(true);
-			
+
 			int n = Integer.parseInt(e.getActionCommand()), i,contador=0;
 			if(n==0) i = 0; else i = n*3;
+			
 			for(int j = i;j<publicaciones.length && contador<3;j++) {
 				tablon.add(publicaciones[j]);
 				contador++;
 			}
+			tablon.setVisible(true);
 		}
 	}
 }

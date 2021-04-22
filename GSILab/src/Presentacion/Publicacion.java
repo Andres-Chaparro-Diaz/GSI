@@ -4,14 +4,21 @@ import javax.swing.JPanel;
 
 import java.awt.Image;
 import java.awt.TextArea;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import Dominio.Usuario;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Publicacion extends JPanel {
 	private JLabel lblTag;
@@ -20,14 +27,14 @@ public class Publicacion extends JPanel {
 	private JLabel lblUsuario;
 	private JLabel lblimLike;
 	private JLabel lblNewLabel;
-
+	private Usuario u;
 	/**
 	 * Create the panel.
 	 */
-	public Publicacion() {
+	public Publicacion(Usuario u) {
 		setBounds(0,0,608,200);
 		setLayout(null);
-		
+		this.u=u;
 		lblUsuario = new JLabel("Nombre Usuario");
 		lblUsuario.setBounds(10, 11, 261, 29);
 		add(lblUsuario);
@@ -39,6 +46,7 @@ public class Publicacion extends JPanel {
 		add(textArea);
 		
 		lblMeGusta = new JLabel("Me Gusta");
+		lblMeGusta.addMouseListener(new LblMeGustaMouseListener());
 		lblMeGusta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMeGusta.setBounds(10, 152, 128, 29);
 		
@@ -76,5 +84,17 @@ public class Publicacion extends JPanel {
 		lblTag.setText(tag);
 		textArea.setText(texto);
 		lblUsuario.setText(usuario);
+	}
+	private class LblMeGustaMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			/*JSONObject JSONUsuarios;
+			lblTag.getText();
+			String rutaescritura = System.getProperty("user.dir") + "\\src\\dominio\\usuarios.json";
+			String file = "actividades.json";
+			FileWriter fw = new FileWriter(new File(rutaescritura, file));
+			fw.write(JSONUsuarios.toString());
+			fw.close();*/
+		}
 	}
 }
