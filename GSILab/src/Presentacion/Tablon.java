@@ -3,8 +3,10 @@ package Presentacion;
 import javax.swing.JPanel;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import Dominio.GestorPublicaciones;
+import Dominio.GestorUsuario;
 import Dominio.Publicacion;
 import Dominio.Usuario;
 
@@ -13,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Rectangle;
+import java.util.Iterator;
+
 import javax.swing.JScrollPane;
 
 public class Tablon extends JPanel {
@@ -21,6 +25,7 @@ public class Tablon extends JPanel {
 	private static Publicacion[] publicaciones;
 	private JScrollPane scrollPane;
 	private static JPanel panelTablon;
+	static JSONObject JSONUsuarios;
 	/**
 	 * Create the panel.
 	 * @throws JSONException 
@@ -28,6 +33,7 @@ public class Tablon extends JPanel {
 	public Tablon() throws JSONException {
 		setBounds(new Rectangle(0, 0, 483, 500));
 		setLayout(null);
+		JSONUsuarios = GestorUsuario.leerUsuarios();
 		{
 			scrollPane = new JScrollPane();
 			scrollPane.setBounds(0, 0, 483, 500);
@@ -45,14 +51,6 @@ public class Tablon extends JPanel {
 		panelTablon.removeAll();
 		panelTablon.setVisible(true);
 		if(opcion.equals("Explorar")) {
-			
-			/*
-			 * Cuando cambiemos esto que ahora muestra lo del boton de inicio, esto tiene que mostrar las publicaciones que tengan
-			 * las categorías con el MG  que  estan en el json, y luego tb tienen que no mostrar las publicaciones del usuario logueado
-			 * seria raro que salieran mis propias publicaciones
-			 * 
-			 */
-			mostrarHome();
 			mostrarExplorar();
 		} else if(opcion.equals("Notificaciones")) {
 			mostrarNotificaciones();
@@ -66,12 +64,83 @@ public class Tablon extends JPanel {
 	public static void setUsuario(Usuario u) throws JSONException {
 		usuario = u;
 		publicaciones = GestorPublicaciones.leerPublicacionesExplorar();
-	}
-	
-	public static void mostrarExplorar() {
 		
 	}
 	
+	public static void mostrarExplorar() {
+		Iterator<String> keys = JSONUsuarios.getJSONObject("usuarios").keys();
+		String id ="";
+		JSONObject tags = null;
+
+		while(keys.hasNext()) {
+			id = keys.next();
+			if(JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getString("correo").equals(usuario.getCorreo())) {
+				tags = JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav");
+				break;
+			}
+		}
+		
+		boolean[] tagsAux = comprobarTags(id,tags);
+		seleccionarPublicaciones(tagsAux);			
+	}
+	
+	public static boolean[] comprobarTags(String id, JSONObject tags) {
+		boolean[] tagsAux = new boolean[tags.length()];// 0 presentacion 1 ocio 2 comida 3 deportes
+		Iterator<String> tagsKeys = tags.keys();
+		String idTags ="";
+		int i = 0;
+		
+		while(tagsKeys.hasNext()) {
+			idTags = tagsKeys.next();
+			tagsAux[i++] = JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").getBoolean(idTags);
+			
+		}
+		return tagsAux;
+	}
+	
+	public static void seleccionarPublicaciones(boolean[] tagsAux) {
+		for(int j = 0; j < publicaciones.length; j++) {
+			if (!publicaciones[j].getUsuario().equals(usuario.getNombre())) {
+				String tag =publicaciones[j].getEtiqueta().toLowerCase();
+				switch (tag) {
+				case "presentacion":
+					if(tagsAux[0]) {
+						PublicacionAspecto pubAux = new PublicacionAspecto();
+						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
+								publicaciones[j].getMensaje(),usuario);
+						panelTablon.add(pubAux);	
+					}
+					break;
+				case "ocio":
+					if(tagsAux[1]) {
+						PublicacionAspecto pubAux = new PublicacionAspecto();
+						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
+								publicaciones[j].getMensaje(),usuario);
+						panelTablon.add(pubAux);
+					}
+					break;
+				case "comida":
+					if(tagsAux[2]) {
+						PublicacionAspecto pubAux = new PublicacionAspecto();
+						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
+								publicaciones[j].getMensaje(),usuario);
+						panelTablon.add(pubAux);
+					}
+					break;
+				case "deportes":
+					
+					if(tagsAux[3]) {
+						
+						PublicacionAspecto pubAux = new PublicacionAspecto();
+						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
+								publicaciones[j].getMensaje(),usuario);
+						panelTablon.add(pubAux);
+					}
+					break;
+				}
+			}
+		}
+	}
 	public static void mostrarHome() {
 		for(int i = 0; i < publicaciones.length; i++) {
 			if (!publicaciones[i].getUsuario().equals(usuario.getNombre())) {

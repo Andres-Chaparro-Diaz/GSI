@@ -50,6 +50,8 @@ public class PrincipalApp extends JPanel {
 	private JMenuItem mntmNombre;
 	private JMenuItem mntmCorreo;
 	private JMenuItem mntmTelefono;
+	private JLabel imInicio;
+	private JLabel lblInicio;
 	/**
 	 * Create the panel.
 	 * @throws JSONException 
@@ -219,6 +221,29 @@ public class PrincipalApp extends JPanel {
 			panelCard.add(tablon);
 		}
 		{
+			lblInicio = new JLabel("Inicio");
+			lblInicio.addMouseListener(new InicioMouseListener());
+			lblInicio.setForeground(Color.BLACK);
+			lblInicio.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblInicio.setBounds(165, 144, 141, 60);
+			add(lblInicio);
+		}
+		{
+			imInicio = new JLabel("");
+			imInicio.setBounds(95, 144, 60, 60);
+			imInicio.addMouseListener(new InicioMouseListener());
+			try {
+				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/home.png"));
+				Image imagenEscalada = imagenOriginal.getScaledInstance(imInicio.getWidth(), imInicio.getHeight(),
+						java.awt.Image.SCALE_SMOOTH);
+				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+				imInicio.setIcon(iconoLabel);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			add(imInicio);
+		}
+		{
 			lblFondo = new JLabel("");
 			lblFondo.setBounds(0, 0, 1280, 701);
 			try {
@@ -270,6 +295,14 @@ public class PrincipalApp extends JPanel {
 			bienvenida.setVisible(false);
 		}
 	}
+	private class InicioMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			tablon.cambiarTablon("Inicio");
+			tablon.setVisible(true);
+			bienvenida.setVisible(false);
+		}
+	}
 	private class LblLogoMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -284,4 +317,6 @@ public class PrincipalApp extends JPanel {
 			
 		}
 	}
+
+
 }

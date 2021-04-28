@@ -19,11 +19,11 @@ public class ejemplo {
 		for (int f = 0; f < nombres.length; f++) {
 			for(int l = 0;l<6;l++){
 				if(l==0||l==3){
-					aux="Deporte";
+					aux="deporte";
 				} else if (l==1||l==4){
-					aux="Ocio";
+					aux="ocio";
 				} else {
-					aux="Comida";
+					aux="comida";
 				}
 				JSONObject jpublicaciones = new JSONObject();
 				jpublicaciones.put("etiqueta", aux);

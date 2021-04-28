@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import org.json.JSONObject;
 
+import Dominio.GestorUsuario;
 import Dominio.Usuario;
 
 import java.awt.Rectangle;
@@ -122,6 +123,7 @@ public class PublicacionAspecto extends JPanel {
 							imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
 					ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 					imMeGusta.setIcon(iconoLabel);
+					meGusta();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -132,6 +134,7 @@ public class PublicacionAspecto extends JPanel {
 							imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
 					ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 					imMeGusta.setIcon(iconoLabel);
+					meGusta();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -139,7 +142,8 @@ public class PublicacionAspecto extends JPanel {
 		}
 	}
 	
-	public void meGusta(String tag,JSONObject JSONUsuarios) {
+	public void meGusta() {
+		JSONObject JSONUsuarios = GestorUsuario.leerUsuarios();
 		Iterator<String> keys = JSONUsuarios.getJSONObject("usuarios").keys();
 		JSONObject tags = null;
 		String id ="";
@@ -154,11 +158,11 @@ public class PublicacionAspecto extends JPanel {
 
 		if(tags != null) {
 			if(estadoFav) {
-				if(!tags.has(tag))
-					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(tag, true);
+				if(!tags.has(lblEtiqueta.getText()))
+					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText(), true);
 			}else {
-				if(tags.has(tag))
-					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").remove(tag);
+				if(tags.has(lblEtiqueta.getText()))
+					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText(),false);
 			}
 
 		}
