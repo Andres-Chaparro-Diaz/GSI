@@ -49,7 +49,7 @@ public class Tablon extends JPanel {
 				if (!publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 					PublicacionAspecto pubAux = new PublicacionAspecto();
 					pubAux.setPropiedades(publicaciones[i].getUsuario(), publicaciones[i].getEtiqueta(),
-							publicaciones[i].getMensaje());
+							publicaciones[i].getMensaje(),usuario);
 					panelTablon.add(pubAux);
 				}
 			}
@@ -64,10 +64,12 @@ public class Tablon extends JPanel {
 				if (publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 					PublicacionAspecto pubAux = new PublicacionAspecto();
 					pubAux.setPropiedades(publicaciones[i].getUsuario(), publicaciones[i].getEtiqueta(),
-							publicaciones[i].getMensaje());
+							publicaciones[i].getMensaje(),usuario);
 					panelTablon.add(pubAux);
 				}
 			}
+		} else {
+			
 		}
 	}
 	public static void setUsuario(Usuario u) throws JSONException {
