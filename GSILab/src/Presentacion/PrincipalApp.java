@@ -279,6 +279,8 @@ public class PrincipalApp extends JPanel {
 	}
 	private class MntmCerrarSesionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			setVisible(false);
+			bienvenida.setVisible(true);
 			
 		}
 	}
