@@ -11,7 +11,6 @@ import Dominio.Publicacion;
 import Dominio.Usuario;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Rectangle;
@@ -68,6 +67,7 @@ public class Tablon extends JPanel {
 	}
 	
 	public static void mostrarExplorar() {
+		JSONUsuarios = GestorUsuario.leerUsuarios();
 		Iterator<String> keys = JSONUsuarios.getJSONObject("usuarios").keys();
 		String id ="";
 		JSONObject tags = null;
@@ -142,6 +142,15 @@ public class Tablon extends JPanel {
 		}
 	}
 	public static void mostrarHome() {
+		/*
+		 * Para mostrar las publicaciones que hemos dado me gusta anteriormente, he pensado que podemos
+		 *  meter un id a cada publicacion, hay que  crear un jsonobject en los usuarios que va a tener 
+		 *  esos id de las publicaciones a las que damos megusta, y luego si te logueas con x 
+		 * usuario y si le ha dado me gusta a y publicacion, podemos poner una propiedad al aspecto 
+		 * de las publicaciones para que si eso pasa que se cambie el color del  corazon
+		 */
+		String leeelcomentariodearribaquesoyunwarning = "";
+		JSONUsuarios = GestorUsuario.leerUsuarios();
 		for(int i = 0; i < publicaciones.length; i++) {
 			if (!publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 				PublicacionAspecto pubAux = new PublicacionAspecto();

@@ -24,7 +24,6 @@ import Dominio.Usuario;
 
 import java.awt.Rectangle;
 import java.awt.Dimension;
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -132,10 +131,11 @@ public class PublicacionAspecto extends JPanel {
 			case "retrasado":
 				palabraAux = "****";
 				break;
+			case "estupido":
+				palabraAux = "****";
 			}
 			palabra += palabraAux+ " ";
 		}
-		System.out.println("[publicacionAspecto, linea 137]: compruebo que funciona el filtro de lenguaje soez");
 		return palabra;
 	}
 	private class ImMeGustaMouseListener extends MouseAdapter {
@@ -184,16 +184,13 @@ public class PublicacionAspecto extends JPanel {
 
 		if(tags != null) {
 			if(estadoFav) {
-				if(!tags.has(lblEtiqueta.getText()))
-					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText(), true);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(), true);
 			}else {
-				if(tags.has(lblEtiqueta.getText()))
-					JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText(),false);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(),false);
 			}
-
 		}
 
-		String rutaescritura = System.getProperty("user.dir") + "\\src\\dominio";
+		String rutaescritura = System.getProperty("user.dir") + "\\src\\Recursos";
 		String file = "usuarios.json";
 		FileWriter fw;
 		try {
