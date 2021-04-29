@@ -134,7 +134,7 @@ public class PublicacionAspecto extends JPanel {
 			}
 			parts[i] = palabra;
 		}
-		System.out.println("estoy en publicacionAspecto linea 137, compruebo que funciona el filtro de lenguaje soez");
+		System.out.println("[publicacionAspecto, linea 137]: compruebo que funciona el filtro de lenguaje soez");
 		return parts.toString();
 	}
 	private class ImMeGustaMouseListener extends MouseAdapter {
