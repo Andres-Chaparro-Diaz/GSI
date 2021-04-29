@@ -109,8 +109,33 @@ public class PublicacionAspecto extends JPanel {
 	public void setPropiedades(String nombreAux, String etiquetaAux, String mensajeAux, Usuario usuario) {
 		this.lblNombre.setText(nombreAux);
 		this.lblEtiqueta.setText(etiquetaAux);
-		this.textArea.setText(mensajeAux);
+		this.textArea.setText(filtroLenguaje(mensajeAux));
 		usuarioLogged = usuario;
+	}
+	
+	public String filtroLenguaje(String texto) {
+		String[] parts = texto.split(" ");
+		String palabra ="";
+		for(int i = 0;i<parts.length;i++) {
+			palabra = parts[i];
+			switch (palabra) {
+			case "inutil":
+				palabra = "****";
+				break;
+			case "imbecil":
+				palabra = "****";
+				break;
+			case "subnormal":
+				palabra = "****";
+				break;
+			case "retrasado":
+				palabra = "****";
+				break;
+			}
+			parts[i] = palabra;
+		}
+		
+		return parts.toString();
 	}
 	private class ImMeGustaMouseListener extends MouseAdapter {
 		@Override
