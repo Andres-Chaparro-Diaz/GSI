@@ -115,27 +115,28 @@ public class PublicacionAspecto extends JPanel {
 	
 	public String filtroLenguaje(String texto) {
 		String[] parts = texto.split(" ");
-		String palabra ="";
+		String palabraAux ="";
+		String palabra = "";
 		for(int i = 0;i<parts.length;i++) {
-			palabra = parts[i];
-			switch (palabra) {
+			palabraAux = parts[i];
+			switch (palabraAux) {
 			case "inutil":
-				palabra = "****";
+				palabraAux = "****";
 				break;
 			case "imbecil":
-				palabra = "****";
+				palabraAux = "****";
 				break;
 			case "subnormal":
-				palabra = "****";
+				palabraAux = "****";
 				break;
 			case "retrasado":
-				palabra = "****";
+				palabraAux = "****";
 				break;
 			}
-			parts[i] = palabra;
+			palabra += palabraAux+ " ";
 		}
 		System.out.println("[publicacionAspecto, linea 137]: compruebo que funciona el filtro de lenguaje soez");
-		return parts.toString();
+		return palabra;
 	}
 	private class ImMeGustaMouseListener extends MouseAdapter {
 		@Override
