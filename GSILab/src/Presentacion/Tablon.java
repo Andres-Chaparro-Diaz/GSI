@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Dominio.GestorNotificaciones;
 import Dominio.GestorPublicaciones;
 import Dominio.GestorUsuario;
 import Dominio.Publicacion;
@@ -165,10 +166,13 @@ public class Tablon extends JPanel {
 	}
 	
 	public static void mostrarNotificaciones() {
-		for(int i = 0; i < 20; i++) {
-			JLabel labelAux = new JLabel();
-			labelAux.setText("ESTO ES UNA PRUEBA");
-			panelTablon.add(labelAux);
+		JSONObject JSONNotificaciones = GestorNotificaciones.leerNotificaciones();
+		JSONObject JSONNotiUser = JSONNotificaciones.getJSONObject(usuario.getNombre());
+		for(int i = 0; i < JSONNotiUser.getInt("numNotificaciones"); i++) {
+			NotificacionAspecto notiAux = new NotificacionAspecto();
+			String nombreUsuarioOrigen = JSONNotiUser.getJSONObject("notificaciones").getJSONObject(String.valueOf(i)).getString("usuario");
+			notiAux.setPropiedades(nombreUsuarioOrigen, usuario, String.valueOf(i));
+			panelTablon.add(notiAux);
 		}
 	}
 	
