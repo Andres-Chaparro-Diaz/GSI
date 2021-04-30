@@ -120,6 +120,7 @@ public class PublicacionAspecto extends JPanel {
 						imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
 				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 				imMeGusta.setIcon(iconoLabel);
+				estadoFav = true;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -197,11 +198,12 @@ public class PublicacionAspecto extends JPanel {
 		}
 
 		if(tags != null) {
+			int n =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").getInt(lblEtiqueta.getText().toLowerCase());
 			if(estadoFav) {
-				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(), true);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(), n+1);
 				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG").put(idPubli);
 			}else {
-				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(),false);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(),n-1);
 				int indexMG = buscarPublicacionMG(JSONUsuarios,id);
 				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG").remove(indexMG);
 

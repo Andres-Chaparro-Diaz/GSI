@@ -92,7 +92,11 @@ public class Tablon extends JPanel {
 		
 		while(tagsKeys.hasNext()) {
 			idTags = tagsKeys.next();
-			tagsAux[i++] = JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").getBoolean(idTags);
+			if(JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").getInt(idTags)>0) {
+				tagsAux[i++] = true;
+			}else{
+				tagsAux[i++] = false;
+			}
 			
 		}
 		return tagsAux;
@@ -142,13 +146,7 @@ public class Tablon extends JPanel {
 		}
 	}
 	public static void mostrarHome() {
-		/*
-		 * Para mostrar las publicaciones que hemos dado me gusta anteriormente, he pensado que podemos
-		 *  meter un id a cada publicacion, hay que  crear un jsonobject en los usuarios que va a tener 
-		 *  esos id de las publicaciones a las que damos megusta, y luego si te logueas con x 
-		 * usuario y si le ha dado me gusta a y publicacion, podemos poner una propiedad al aspecto 
-		 * de las publicaciones para que si eso pasa que se cambie el color del  corazon
-		 */
+
 		JSONUsuarios = GestorUsuario.leerUsuarios();
 		for(int i = 0; i < publicaciones.length; i++) {
 			if (!publicaciones[i].getUsuario().equals(usuario.getNombre())) {
