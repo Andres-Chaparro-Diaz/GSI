@@ -6,6 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/andre/git/GSI/GSILab/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
