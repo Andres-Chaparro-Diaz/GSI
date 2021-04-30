@@ -28,7 +28,7 @@ public class Bienvenida extends JPanel {
 			lblMensaje = new JLabel();
 			lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 			lblMensaje.setForeground(Color.BLACK);
-			lblMensaje.setText("<html><body>Bienvenid@ a<br>\"Nombre de la red social\"<br><br>A la izquierda puedes encontrar las distintas funcionalidades</body></html>");
+			lblMensaje.setText("<html><body>Bienvenid@ a<br>\"Flickr\"<br><br>A la izquierda puedes encontrar las distintas funcionalidades</body></html>");
 			lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblMensaje.setBounds(111, 132, 269, 277);
 			add(lblMensaje);

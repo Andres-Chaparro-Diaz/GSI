@@ -49,7 +49,7 @@ public class Main {
 		frmJawapp = new JFrame();
 		frmJawapp.setResizable(false);
 		frmJawapp.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/Recursos/Logo.png")));
-		frmJawapp.setTitle("JAWAPP");
+		frmJawapp.setTitle("FLICKR");
 		frmJawapp.setBounds(100, 100, 1280, 720);
 		frmJawapp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJawapp.getContentPane().setLayout(new CardLayout(0, 0));

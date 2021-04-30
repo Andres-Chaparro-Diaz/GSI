@@ -62,7 +62,7 @@ public class PrincipalApp extends JPanel {
 		{
 			lblLogo = new JLabel("");
 			lblLogo.addMouseListener(new LblLogoMouseListener());
-			lblLogo.setBounds(72, 35, 283, 98);
+			lblLogo.setBounds(94, 70, 243, 60);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/LogoTablon.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
@@ -125,7 +125,7 @@ public class PrincipalApp extends JPanel {
 		{
 			imNuevaPublicacion = new JLabel("");
 			imNuevaPublicacion.addMouseListener(new NuevaPublicacionMouseListener());
-			imNuevaPublicacion.setBounds(95, 210, 60, 60);
+			imNuevaPublicacion.setBounds(94, 226, 60, 60);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/NuevaPublicacion.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(imNuevaPublicacion.getWidth(),
@@ -138,24 +138,25 @@ public class PrincipalApp extends JPanel {
 			add(imNuevaPublicacion);
 		}
 		{
-			lblNuevaPublicacion = new JLabel("Nueva publicación");
+			lblNuevaPublicacion = new JLabel("  Nueva publicación");
 			lblNuevaPublicacion.setForeground(Color.BLACK);
 			lblNuevaPublicacion.addMouseListener(new NuevaPublicacionMouseListener());
 			lblNuevaPublicacion.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNuevaPublicacion.setBounds(165, 210, 141, 60);
+			lblNuevaPublicacion.setBounds(153, 226, 152, 60);
 			add(lblNuevaPublicacion);
 		}
 		{
-			lblExplorar = new JLabel("Explorar");
+			lblExplorar = new JLabel("  Explorar");
+			lblExplorar.setForeground(Color.BLACK);
 			lblExplorar.addMouseListener(new ExplorarMouseListener());
 			lblExplorar.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblExplorar.setBounds(165, 280, 141, 60);
+			lblExplorar.setBounds(153, 296, 152, 60);
 			add(lblExplorar);
 		}
 		{
 			imExplorar = new JLabel("");
 			imExplorar.addMouseListener(new ExplorarMouseListener());
-			imExplorar.setBounds(95, 280, 60, 60);
+			imExplorar.setBounds(94, 296, 60, 60);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/Explorar.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(imExplorar.getWidth(),
@@ -168,16 +169,17 @@ public class PrincipalApp extends JPanel {
 			add(imExplorar);
 		}
 		{
-			lblTusPublicaciones = new JLabel("Tus publicaciones");
+			lblTusPublicaciones = new JLabel("  Tus publicaciones");
+			lblTusPublicaciones.setForeground(Color.BLACK);
 			lblTusPublicaciones.addMouseListener(new TusPublicacionesMouseListener());
 			lblTusPublicaciones.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblTusPublicaciones.setBounds(165, 350, 141, 60);
+			lblTusPublicaciones.setBounds(153, 367, 152, 60);
 			add(lblTusPublicaciones);
 		}
 		{
 			imTusPublicaciones = new JLabel("");
 			imTusPublicaciones.addMouseListener(new TusPublicacionesMouseListener());
-			imTusPublicaciones.setBounds(95, 350, 60, 60);
+			imTusPublicaciones.setBounds(94, 367, 60, 60);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/TusPublicaciones.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(imTusPublicaciones.getWidth(),
@@ -192,7 +194,7 @@ public class PrincipalApp extends JPanel {
 		{
 			imNotificaciones = new JLabel("");
 			imNotificaciones.addMouseListener(new NotificacionesMouseListener());
-			imNotificaciones.setBounds(100, 420, 60, 60);
+			imNotificaciones.setBounds(94, 437, 60, 60);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/Notificaciones.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(imNotificaciones.getWidth(),
@@ -205,10 +207,11 @@ public class PrincipalApp extends JPanel {
 			add(imNotificaciones);
 		}
 		{
-			lblNotificaciones = new JLabel("Notificaciones");
+			lblNotificaciones = new JLabel("  Notificaciones");
+			lblNotificaciones.setForeground(Color.BLACK);
 			lblNotificaciones.addMouseListener(new NotificacionesMouseListener());
 			lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNotificaciones.setBounds(165, 420, 141, 60);
+			lblNotificaciones.setBounds(153, 437, 152, 60);
 			add(lblNotificaciones);
 		}
 		{
@@ -221,16 +224,16 @@ public class PrincipalApp extends JPanel {
 			panelCard.add(tablon);
 		}
 		{
-			lblInicio = new JLabel("Inicio");
+			lblInicio = new JLabel("  Inicio");
 			lblInicio.addMouseListener(new InicioMouseListener());
 			lblInicio.setForeground(Color.BLACK);
 			lblInicio.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblInicio.setBounds(165, 144, 141, 60);
+			lblInicio.setBounds(153, 160, 152, 60);
 			add(lblInicio);
 		}
 		{
 			imInicio = new JLabel("");
-			imInicio.setBounds(95, 144, 60, 60);
+			imInicio.setBounds(94, 160, 60, 60);
 			imInicio.addMouseListener(new InicioMouseListener());
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/home.png"));
