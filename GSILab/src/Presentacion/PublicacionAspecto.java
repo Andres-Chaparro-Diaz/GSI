@@ -242,7 +242,6 @@ public class PublicacionAspecto extends JPanel {
 	
 	public boolean buscarPubliMGIcono(JSONObject JSONUsuarios, String id) {
 		JSONArray publiMG =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG");
-		int index = 0;
 		boolean encontrado = false;
 		for (int i = 0; i < publiMG.length(); i++) {
 			if (idPubli.equals(publiMG.getString(i))) {
