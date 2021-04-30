@@ -39,6 +39,7 @@ public class GestorUsuario {
 					usuario.setCorreo(aux.getString("correo"));
 					usuario.setNombre(aux.getString("nombre"));
 					usuario.setTelefono(aux.getString("telefono"));
+					usuario.setId(String.valueOf(i));
 					datosCorrectos = true;
 					break;
 				}

@@ -30,9 +30,12 @@ public class GestorPublicaciones {
 				publicacionAux.setEtiqueta(pAux.getString("etiqueta"));
 				publicacionAux.setMensaje(pAux.getString("mensaje"));
 				publicacionAux.setUsuario(pAux.getString("usuario"));
+				publicacionAux.setId(String.valueOf(i));
 				publicaciones[i] = publicacionAux;
 		}
 		return publicaciones;
 	}
+	
+
 
 }

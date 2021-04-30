@@ -17,8 +17,10 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Dominio.GestorPublicaciones;
 import Dominio.GestorUsuario;
 import Dominio.Usuario;
 
@@ -35,7 +37,7 @@ public class PublicacionAspecto extends JPanel {
 	private JLabel imMeGusta;
 	private Usuario usuarioLogged;
 	private boolean estadoFav;
-	
+	private String idPubli;
 	/*/*//*
 	 * COMO MUCHO 168 CARACTERES
 	 */
@@ -105,11 +107,23 @@ public class PublicacionAspecto extends JPanel {
 		}
 	}
 	
-	public void setPropiedades(String nombreAux, String etiquetaAux, String mensajeAux, Usuario usuario) {
+	public void setPropiedades(String nombreAux, String etiquetaAux, String mensajeAux, Usuario usuario,String idPubli) {
 		this.lblNombre.setText(nombreAux);
 		this.lblEtiqueta.setText(etiquetaAux);
 		this.textArea.setText(filtroLenguaje(mensajeAux));
+		this.idPubli = idPubli;
 		usuarioLogged = usuario;
+		if(buscarPubliMGIcono(GestorUsuario.leerUsuarios(),usuarioLogged.getId())) {
+			try {
+				Image imagenOriginal = ImageIO.read(PublicacionAspecto.class.getResource("/Recursos/MeGustaRojo.png"));
+				Image imagenEscalada = imagenOriginal.getScaledInstance(imMeGusta.getWidth(),
+						imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
+				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+				imMeGusta.setIcon(iconoLabel);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	public String filtroLenguaje(String texto) {
@@ -185,11 +199,20 @@ public class PublicacionAspecto extends JPanel {
 		if(tags != null) {
 			if(estadoFav) {
 				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(), true);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG").put(idPubli);
 			}else {
 				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONObject("tagFav").put(lblEtiqueta.getText().toLowerCase(),false);
+				int indexMG = buscarPublicacionMG(JSONUsuarios,id);
+				JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG").remove(indexMG);
+
 			}
 		}
+		escribirJson(JSONUsuarios);
 
+
+	}
+	
+	public void escribirJson(JSONObject JSONUsuarios) {
 		String rutaescritura = System.getProperty("user.dir") + "\\src\\Recursos";
 		String file = "usuarios.json";
 		FileWriter fw;
@@ -201,7 +224,31 @@ public class PublicacionAspecto extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+	}
+	
+	public int buscarPublicacionMG(JSONObject JSONUsuarios, String id) {
+		JSONArray publiMG =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG");
+		int index = 0;
+		for (int i = 0; i < publiMG.length(); i++) {
+			if (idPubli.equals(publiMG.getString(i))) {
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+	
+	public boolean buscarPubliMGIcono(JSONObject JSONUsuarios, String id) {
+		JSONArray publiMG =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG");
+		int index = 0;
+		boolean encontrado = false;
+		for (int i = 0; i < publiMG.length(); i++) {
+			if (idPubli.equals(publiMG.getString(i))) {
+				encontrado = true;
+				break;
+			}
+		}
+		return encontrado;
 	}
 	
 }

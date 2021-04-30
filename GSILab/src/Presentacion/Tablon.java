@@ -107,7 +107,7 @@ public class Tablon extends JPanel {
 					if(tagsAux[0]) {
 						PublicacionAspecto pubAux = new PublicacionAspecto();
 						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
-								publicaciones[j].getMensaje(),usuario);
+								publicaciones[j].getMensaje(),usuario, publicaciones[j].getId());
 						panelTablon.add(pubAux);	
 					}
 					break;
@@ -115,7 +115,7 @@ public class Tablon extends JPanel {
 					if(tagsAux[1]) {
 						PublicacionAspecto pubAux = new PublicacionAspecto();
 						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
-								publicaciones[j].getMensaje(),usuario);
+								publicaciones[j].getMensaje(),usuario, publicaciones[j].getId());
 						panelTablon.add(pubAux);
 					}
 					break;
@@ -123,7 +123,7 @@ public class Tablon extends JPanel {
 					if(tagsAux[2]) {
 						PublicacionAspecto pubAux = new PublicacionAspecto();
 						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
-								publicaciones[j].getMensaje(),usuario);
+								publicaciones[j].getMensaje(),usuario, publicaciones[j].getId());
 						panelTablon.add(pubAux);
 					}
 					break;
@@ -133,7 +133,7 @@ public class Tablon extends JPanel {
 						
 						PublicacionAspecto pubAux = new PublicacionAspecto();
 						pubAux.setPropiedades(publicaciones[j].getUsuario(), publicaciones[j].getEtiqueta(),
-								publicaciones[j].getMensaje(),usuario);
+								publicaciones[j].getMensaje(),usuario, publicaciones[j].getId());
 						panelTablon.add(pubAux);
 					}
 					break;
@@ -149,13 +149,12 @@ public class Tablon extends JPanel {
 		 * usuario y si le ha dado me gusta a y publicacion, podemos poner una propiedad al aspecto 
 		 * de las publicaciones para que si eso pasa que se cambie el color del  corazon
 		 */
-		String leeelcomentariodearribaquesoyunwarning = "";
 		JSONUsuarios = GestorUsuario.leerUsuarios();
 		for(int i = 0; i < publicaciones.length; i++) {
 			if (!publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 				PublicacionAspecto pubAux = new PublicacionAspecto();
 				pubAux.setPropiedades(publicaciones[i].getUsuario(), publicaciones[i].getEtiqueta(),
-						publicaciones[i].getMensaje(),usuario);
+						publicaciones[i].getMensaje(),usuario, publicaciones[i].getId());
 				panelTablon.add(pubAux);
 			}
 		}
@@ -174,7 +173,7 @@ public class Tablon extends JPanel {
 			if (publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 				PublicacionAspecto pubAux = new PublicacionAspecto();
 				pubAux.setPropiedades(publicaciones[i].getUsuario(), publicaciones[i].getEtiqueta(),
-						publicaciones[i].getMensaje(),usuario);
+						publicaciones[i].getMensaje(),usuario, publicaciones[i].getId());
 				panelTablon.add(pubAux);
 			}
 		}

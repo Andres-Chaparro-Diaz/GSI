@@ -1,14 +1,7 @@
 package Dominio;
 
 public class Publicacion {
-	private String etiqueta, mensaje, usuario;
-
-	public Publicacion(String etiqueta, String mensaje, String usuario) {
-		super();
-		this.etiqueta = etiqueta;
-		this.mensaje = mensaje;
-		this.usuario = usuario;
-	}
+	private String etiqueta, mensaje, usuario, id;
 
 	public Publicacion() {
 		
@@ -16,9 +9,17 @@ public class Publicacion {
 	
 	@Override
 	public String toString() {
-		return "Publicacion [etiqueta=" + etiqueta + ", mensaje=" + mensaje + ", usuario=" + usuario + "]";
+		return "Publicacion "+id+ " [etiqueta=" + etiqueta + ", mensaje=" + mensaje + ", usuario=" + usuario + "]";
 	}
 
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public String getEtiqueta() {
 		return etiqueta;
 	}

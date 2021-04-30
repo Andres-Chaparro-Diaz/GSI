@@ -1,17 +1,26 @@
 package Dominio;
 
 public class Usuario {
-	private String nombre, correo, telefono, contrasena;
+	private String nombre, correo, telefono, contrasena,id;
 
-	public Usuario(String nombre, String correo, String telefono, String contrasena) {
+	public Usuario(String nombre, String correo, String telefono, String contrasena,String id) {
 		this.nombre = nombre;
 		this.correo = correo;
 		this.telefono = telefono;
 		this.contrasena = contrasena;
+		this.id = id;
 	}
 
 	public Usuario() {
 
+	}
+
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getContrasena() {
