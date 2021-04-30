@@ -76,9 +76,7 @@ public class GestorPublicaciones {
 			int indexMG = buscarPublicacionMG(JSONUsuarios, usuarioLogged.getId(),idPubli);
 			JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONArray("publicacionesMG")
 					.remove(indexMG);
-			borrarJsonNotificaciones(nombreUsuarioPubli, usuarioLogged);
-
-
+			//borrarJsonNotificaciones(nombreUsuarioPubli, usuarioLogged);
 		}
 		escribirJsonUsuarios(JSONUsuarios);
 

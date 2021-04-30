@@ -15,7 +15,6 @@ import java.awt.Color;
 
 public class Bienvenida extends JPanel {
 	private JLabel lblMensaje;
-	private JLabel lblLogo;
 	private JLabel lblFondo;
 
 	/**
@@ -28,38 +27,23 @@ public class Bienvenida extends JPanel {
 			lblMensaje = new JLabel();
 			lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 			lblMensaje.setForeground(Color.BLACK);
-			lblMensaje.setText("<html><body>Bienvenid@ a<br>\"Flickr\"<br><br>A la izquierda puedes encontrar las distintas funcionalidades</body></html>");
-			lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 20));
-			lblMensaje.setBounds(111, 132, 269, 277);
+			lblMensaje.setText("<html><body>Bienvenid@ a Flickr<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A la izquierda &nbsp;&nbsp;puedes encontrar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nuestras &nbsp;&nbsp;&nbsp;&nbsp;funcionalidades</body></html>");
+			lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 25));
+			lblMensaje.setBounds(109, 57, 255, 277);
 			add(lblMensaje);
 		}
 		{
-			lblLogo = new JLabel("");
-			lblLogo.setBounds(10, 33, 460, 412);
-			try {
-				Image imagenOriginal = ImageIO.read(Bienvenida.class.getResource("/Recursos/LogoFondo.png"));
-				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
-						lblLogo.getHeight(), java.awt.Image.SCALE_SMOOTH);
-				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
-				lblLogo.setIcon(iconoLabel);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			add(lblLogo);
-		}
-		{
 			lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(Bienvenida.class.getResource("/Recursos/Fondo.jpg")));
-			lblFondo.setBounds(0, 0, 483, 500);
-			/*try {
-				Image imagenOriginal = ImageIO.read(Bienvenida.class.getResource("/Recursos/Fondo.jpg"));
+			lblFondo.setBounds(-394, -125, 1280, 701);
+			try {
+				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/Fondo.jpg"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblFondo.getWidth(),
 						lblFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 				lblFondo.setIcon(iconoLabel);
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}*/
+			}
 			add(lblFondo);
 		}
 

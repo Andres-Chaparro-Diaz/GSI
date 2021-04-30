@@ -24,6 +24,7 @@ import java.awt.Color;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 
 public class PrincipalApp extends JPanel {
 	private JLabel lblLogo;
@@ -62,7 +63,7 @@ public class PrincipalApp extends JPanel {
 		{
 			lblLogo = new JLabel("");
 			lblLogo.addMouseListener(new LblLogoMouseListener());
-			lblLogo.setBounds(94, 70, 243, 60);
+			lblLogo.setBounds(94, 70, 205, 50);
 			try {
 				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/LogoTablon.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(lblLogo.getWidth(),
@@ -73,6 +74,19 @@ public class PrincipalApp extends JPanel {
 				e1.printStackTrace();
 			}
 			add(lblLogo);
+			
+			JLabel lblImFondo = new JLabel("");
+			lblImFondo.setBounds(309, 70, 50, 50);
+			try {
+				Image imagenOriginal = ImageIO.read(PrincipalApp.class.getResource("/Recursos/Logo.png"));
+				Image imagenEscalada = imagenOriginal.getScaledInstance(lblImFondo.getWidth(),
+						lblImFondo.getHeight(), java.awt.Image.SCALE_SMOOTH);
+				ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
+				lblImFondo.setIcon(iconoLabel);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			add(lblImFondo);
 		}
 		{
 			panelArriba = new JPanel();
@@ -216,7 +230,7 @@ public class PrincipalApp extends JPanel {
 		}
 		{
 			panelCard = new JPanel();
-			panelCard.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			panelCard.setBorder(new LineBorder(Color.BLACK, 1, true));
 			panelCard.setBounds(393, 160, 483, 500);
 			add(panelCard);
 			panelCard.setLayout(new CardLayout(0, 0));
@@ -323,6 +337,4 @@ public class PrincipalApp extends JPanel {
 			
 		}
 	}
-
-
 }

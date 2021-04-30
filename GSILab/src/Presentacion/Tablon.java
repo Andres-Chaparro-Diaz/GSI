@@ -74,6 +74,7 @@ public class Tablon extends JPanel {
 	}
 	
 	public static void mostrarExplorar() {
+		publicaciones = GestorPublicaciones.leerPublicacionesExplorar();
 		JSONUsuarios = GestorUsuario.leerUsuarios();
 		Iterator<String> keys = JSONUsuarios.getJSONObject("usuarios").keys();
 		String id ="";
@@ -177,6 +178,7 @@ public class Tablon extends JPanel {
 	}
 	
 	public static void mostrarMisPublicaciones() {
+		publicaciones = GestorPublicaciones.leerPublicacionesExplorar();
 		for(int i = 0; i < publicaciones.length; i++) {
 			if (publicaciones[i].getUsuario().equals(usuario.getNombre())) {
 				PublicacionAspecto pubAux = new PublicacionAspecto();
