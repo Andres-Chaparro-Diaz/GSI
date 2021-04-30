@@ -52,18 +52,24 @@ public class Tablon extends JPanel {
 		if(opcion.equals("Explorar")) {
 			mostrarExplorar();
 		} else if(opcion.equals("Notificaciones")) {
-			mostrarNotificaciones();
-			
+			mostrarNotificaciones();	
 		} else if(opcion.equals("Tus publicaciones")){
 			mostrarMisPublicaciones();
-		} else {
+		} else if(opcion.equals("Inicio")){
 			mostrarHome();
+		}else {
+			mostrarNuevaPublicacion();
 		}
 	}
 	public static void setUsuario(Usuario u) throws JSONException {
 		usuario = u;
 		publicaciones = GestorPublicaciones.leerPublicacionesExplorar();
 		
+	}
+	
+	public static void mostrarNuevaPublicacion() {
+		NuevaPublicacion nuevaPublicacion = new NuevaPublicacion(usuario);
+		panelTablon.add(nuevaPublicacion);
 	}
 	
 	public static void mostrarExplorar() {

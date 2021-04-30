@@ -36,6 +36,23 @@ public class GestorPublicaciones {
 		return publicaciones;
 	}
 	
+	public static JSONObject leerPublicaciones() {
+		JSONObject obj;
+		try {
+			JSONTokener tokener = new JSONTokener(
+					new FileReader(System.getProperty("user.dir") + "\\src\\Recursos\\publicaciones.json"));
+			obj = new JSONObject(tokener);
+			obj.getInt("numPublicaciones");
+			obj.getJSONObject("publicaciones");
+		} catch (FileNotFoundException e) {
+			System.out.println("\nERROR: El archivo publicaciones.json no se ha encontrado.");
+			return null;
+		} catch (JSONException e) {
+			System.out.println("\nERROR: El formato del archivo publicaciones.json no es valido.");
+			return null;
+		}
+		return obj;
+	}
 
 
 }

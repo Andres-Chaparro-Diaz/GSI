@@ -269,6 +269,9 @@ public class PrincipalApp extends JPanel {
 	private class NuevaPublicacionMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			tablon.cambiarTablon("Nueva Publicacion");
+			tablon.setVisible(true);
+			bienvenida.setVisible(false);
 		}
 	}
 	private class ExplorarMouseListener extends MouseAdapter {
