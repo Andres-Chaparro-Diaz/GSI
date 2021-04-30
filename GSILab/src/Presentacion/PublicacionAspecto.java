@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Dominio.GestorNotificaciones;
+import Dominio.GestorPublicaciones;
 import Dominio.GestorUsuario;
 import Dominio.Usuario;
 
@@ -113,7 +114,7 @@ public class PublicacionAspecto extends JPanel {
 		this.textArea.setText(filtroLenguaje(mensajeAux));
 		this.idPubli = idPubli;
 		usuarioLogged = usuario;
-		if(buscarPubliMGIcono(GestorUsuario.leerUsuarios(),usuarioLogged.getId())) {
+		if(GestorPublicaciones.buscarPubliMGIcono(GestorUsuario.leerUsuarios(),usuarioLogged.getId(),idPubli)) {
 			try {
 				Image imagenOriginal = ImageIO.read(PublicacionAspecto.class.getResource("/Recursos/MeGustaRojo.png"));
 				Image imagenEscalada = imagenOriginal.getScaledInstance(imMeGusta.getWidth(),
@@ -164,7 +165,7 @@ public class PublicacionAspecto extends JPanel {
 							imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
 					ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 					imMeGusta.setIcon(iconoLabel);
-					meGusta();
+					GestorPublicaciones.meGusta(usuarioLogged,lblEtiqueta.getText(),lblNombre.getText(), estadoFav,idPubli);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -175,7 +176,7 @@ public class PublicacionAspecto extends JPanel {
 							imMeGusta.getHeight(), java.awt.Image.SCALE_SMOOTH);
 					ImageIcon iconoLabel = new ImageIcon(imagenEscalada);
 					imMeGusta.setIcon(iconoLabel);
-					meGusta();
+					GestorPublicaciones.meGusta(usuarioLogged,lblEtiqueta.getText(),lblNombre.getText(), estadoFav,idPubli);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -183,106 +184,6 @@ public class PublicacionAspecto extends JPanel {
 		}
 	}
 	
-	public void meGusta() {
-		JSONObject JSONUsuarios = GestorUsuario.leerUsuarios();
 
-		int n = JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONObject("tagFav")
-				.getInt(lblEtiqueta.getText().toLowerCase());
-		if (estadoFav) {
-			JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONObject("tagFav")
-					.put(lblEtiqueta.getText().toLowerCase(), n + 1);
-			JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONArray("publicacionesMG")
-					.put(idPubli);
-			modificarJsonNotificaciones(lblNombre.getText(),usuarioLogged);
-		} else {
-			JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONObject("tagFav")
-					.put(lblEtiqueta.getText().toLowerCase(), n - 1);
-			int indexMG = buscarPublicacionMG(JSONUsuarios, usuarioLogged.getId());
-			JSONUsuarios.getJSONObject("usuarios").getJSONObject(usuarioLogged.getId()).getJSONArray("publicacionesMG")
-					.remove(indexMG);
-			borrarJsonNotificaciones(lblNombre.getText(), usuarioLogged);
-
-
-		}
-		escribirJsonUsuarios(JSONUsuarios);
-
-	}
-	
-	public void escribirJsonUsuarios(JSONObject JSONUsuarios) {
-		String rutaescritura = System.getProperty("user.dir") + "\\src\\Recursos";
-		String file = "usuarios.json";
-		FileWriter fw;
-		try {
-			fw = new FileWriter(new File(rutaescritura, file));
-			fw.write(JSONUsuarios.toString());
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public void modificarJsonNotificaciones(String nombre, Usuario usuarioLogged) {
-		JSONObject JSONNotificaciones = GestorNotificaciones.leerNotificaciones();
-		int n = JSONNotificaciones.getJSONObject(nombre).getInt("numNotificaciones");
-		JSONObject JSONNotificacion = new JSONObject();
-		JSONNotificacion.put("usuario", usuarioLogged.getNombre());
-		JSONNotificacion.put("notificacion", "Le ha dado Me Gusta a una de tus publicaciones");
-		JSONNotificaciones.getJSONObject(nombre).getJSONObject("notificaciones").put(String.valueOf(n), JSONNotificacion);
-		JSONNotificaciones.getJSONObject(nombre).put("numNotificaciones",n+1);
-		escribirJsonNotificaciones(JSONNotificaciones);
-	}
-	
-	public void borrarJsonNotificaciones(String nombre, Usuario usuarioLogged) {
-		JSONObject JSONNotificaciones = GestorNotificaciones.leerNotificaciones();
-		int n = JSONNotificaciones.getJSONObject(nombre).getInt("numNotificaciones");
-		Iterator<String> keys = JSONNotificaciones.getJSONObject(nombre).getJSONObject("notificaciones").keys();
-		while(keys.hasNext()) {
-			String id = keys.next();
-			if(JSONNotificaciones.getJSONObject(nombre).getJSONObject("notificaciones").getJSONObject(id).getString("usuario").equals(usuarioLogged.getNombre())) {
-				JSONNotificaciones.getJSONObject(nombre).getJSONObject("notificaciones").remove(id);
-				JSONNotificaciones.getJSONObject(nombre).put("numNotificaciones",n-1);
-				break;
-			}
-		}
-		escribirJsonNotificaciones(JSONNotificaciones);
-	}
-	
-	public void escribirJsonNotificaciones(JSONObject JSONNotificaciones) {
-		String rutaescritura = System.getProperty("user.dir") + "\\src\\Recursos";
-		String file = "notificaciones.json";
-		FileWriter fw;
-		try {
-			fw = new FileWriter(new File(rutaescritura, file));
-			fw.write(JSONNotificaciones.toString());
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public int buscarPublicacionMG(JSONObject JSONUsuarios, String id) {
-		JSONArray publiMG =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG");
-		int index = 0;
-		for (int i = 0; i < publiMG.length(); i++) {
-			if (idPubli.equals(publiMG.getString(i))) {
-				index = i;
-				break;
-			}
-		}
-		return index;
-	}
-	
-	public boolean buscarPubliMGIcono(JSONObject JSONUsuarios, String id) {
-		JSONArray publiMG =JSONUsuarios.getJSONObject("usuarios").getJSONObject(id).getJSONArray("publicacionesMG");
-		boolean encontrado = false;
-		for (int i = 0; i < publiMG.length(); i++) {
-			if (idPubli.equals(publiMG.getString(i))) {
-				encontrado = true;
-				break;
-			}
-		}
-		return encontrado;
-	}
 	
 }
