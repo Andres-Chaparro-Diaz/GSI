@@ -20,7 +20,6 @@ import javax.swing.border.LineBorder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Dominio.GestorPublicaciones;
 import Dominio.GestorUsuario;
 import Dominio.Usuario;
 
