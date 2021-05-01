@@ -108,19 +108,19 @@ public class PrincipalApp extends JPanel {
 						mnDetalles.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 						mnUsuario.add(mnDetalles);
 						{
-							mntmNombre = new JMenuItem("AQUI");
+							mntmNombre = new JMenuItem("");
 							mntmNombre.setForeground(Color.BLACK);
 							mntmNombre.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 							mnDetalles.add(mntmNombre);
 						}
 						{
-							mntmCorreo = new JMenuItem("Correo aqui");
+							mntmCorreo = new JMenuItem("");
 							mntmCorreo.setForeground(Color.BLACK);
 							mntmCorreo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 							mnDetalles.add(mntmCorreo);
 						}
 						{
-							mntmTelefono = new JMenuItem("Telefono aqui");
+							mntmTelefono = new JMenuItem("");
 							mntmTelefono.setForeground(Color.BLACK);
 							mntmTelefono.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 							mnDetalles.add(mntmTelefono);
@@ -280,8 +280,8 @@ public class PrincipalApp extends JPanel {
 		usuario = u;
 		Tablon.setUsuario(usuario);
 		this.mntmNombre.setText("Nombre: " +usuario.getNombre());
-		this.mntmCorreo.setText("Nombre: " +usuario.getCorreo());
-		this.mntmTelefono.setText("Nombre: " +usuario.getTelefono());
+		this.mntmCorreo.setText("Correo: " +usuario.getCorreo());
+		this.mntmTelefono.setText("Teléfono: " +usuario.getTelefono());
 	}
 	private class NuevaPublicacionMouseListener extends MouseAdapter {
 		@Override
